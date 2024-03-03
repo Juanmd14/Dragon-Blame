@@ -41,6 +41,11 @@ const monsters = [
 ]
 const locations = [
   {
+    name: "inicio",
+    imagen: "https://www.mundodeportivo.com/alfabeta/hero/2021/03/pillars-of-eternity.jpg?width=1200&aspect_ratio=16:9",
+    inicio();
+  }
+  {
     name: "town square",
     "button text": ["Go to store", "Go to cave", "Fight dragon"],
     "button functions": [goStore, goCave, fightDragon],
