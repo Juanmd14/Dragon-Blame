@@ -43,8 +43,8 @@ const locations = [
   {
     name: "inicio",
     imagen: "https://www.mundodeportivo.com/alfabeta/hero/2021/03/pillars-of-eternity.jpg?width=1200&aspect_ratio=16:9",
-    inicio();
-  }
+    text: "Bienvenido a Dragon Repeller. Debes derrotar al dragón que impide que la gente abandone el pueblo. Estás en la plaza del pueblo. ¿A donde quieres ir? Utilice los botones de arriba."
+  },
   {
     name: "town square",
     "button text": ["Go to store", "Go to cave", "Fight dragon"],
@@ -94,6 +94,30 @@ const locations = [
     text: "You find a secret game. Pick a number above. Ten numbers will be randomly chosen between 0 and 10. If the number you choose matches one of the random numbers, you win!"
   }
 ];
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  const welcomeMessage = document.querySelector('.welcome-message');
+
+  // retrasa el tiempo del mensaje al principio
+  setTimeout(() => {
+      welcomeMessage.classList.add('show');
+  }, 500);
+
+  // click para inicio
+  document.getElementById('startGame').addEventListener('click', function() {
+      var playerName = document.getElementById('playerName').value;
+      if (playerName.trim() !== '') {
+          // Aquí puedes hacer algo con el nombre del jugador, como mostrarlo en algún lugar del juego.
+
+          // Ocultar pantalla de inicio y mostrar el juego.
+          document.getElementById('startScreen').style.display = 'none';
+          document.getElementById('game').style.display = 'block';
+      } else {
+          alert('Por favor, ingresa tu nombre antes de comenzar el juego.');
+      }
+  });
+});
 
 // initialize buttons
 button1.onclick = goStore;
