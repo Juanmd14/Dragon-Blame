@@ -46,6 +46,12 @@ const locations = [
     text: "Bienvenido a Dragon Repeller. Debes derrotar al dragón que impide que la gente abandone el pueblo. Estás en la plaza del pueblo. ¿A donde quieres ir? Utilice los botones de arriba."
   },
   {
+    name: "slimeFight",
+    "button text": ["Attack", "Dodge", "Run"],
+    "button functions": [attackSlime, dodgeSlime, goTown],
+    text: "Encontraste un slime, que haras?"
+},
+  {
     name: "town square",
     "button text": ["Go to store", "Go to cave", "Fight dragon"],
     "button functions": [goStore, goCave, fightDragon],
@@ -112,16 +118,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
           // Ocultar pantalla de inicio y mostrar el juego.
           document.getElementById('startScreen').style.display = 'none';
-          document.getElementById('game').style.display = 'block';
+          document.getElementById('city').style.display = 'block';
       } else {
           alert('Por favor, ingresa tu nombre antes de comenzar el juego.');
       }
   });
 });
 
+const goToForestButton = document.getElementById('goToForest');
+
+goToForestButton.addEventListener('click', function() {
+    document.getElementById('city').style.display = 'none'; // Oculta la ciudad
+    document.getElementById('bosque').style.display = 'block'; // Muestra el bosque
+});
+
+
 // initialize buttons
 button1.onclick = goStore;
-button2.onclick = goCave;
+button2.onclick = goForest;
 button3.onclick = fightDragon;
 
 function update(location) {
@@ -191,8 +205,18 @@ function sellWeapon() {
 }
 
 function fightSlime() {
-  fighting = 0;
-  goFight();
+    update(locations[1]); // Corregido el índice para apuntar al escenario slimeFight
+  }
+
+
+function attackSlime() {
+  text.innerText = "ej: Atacaste al slime !";
+  // Lógica de ataque al slime
+}
+
+function dodgeSlime() {
+  text.innerText = "ej: Esquivaste al slime !";
+  // Lógica de esquivar al slime
 }
 
 function fightBeast() {
@@ -203,6 +227,10 @@ function fightBeast() {
 function fightDragon() {
   fighting = 2;
   goFight();
+}
+
+function goForest() {
+  update(locations[1]); // Actualiza a la pelea con el slime en el bosque
 }
 
 function goFight() {
@@ -315,3 +343,4 @@ function pick(guess) {
     }
   }
 }
+
