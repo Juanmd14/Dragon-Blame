@@ -14,25 +14,56 @@
         <input type="text" id="playerName" placeholder="Ingresa tu nombre" required>
         <button id="startGame" class="start-button">Start Game</button>
     </div>
+    
     <div id="game">
         <div id="stats">
             <span class="stat">XP: <strong><span id="xpText">0</span></strong></span>
             <span class="stat">Health: <strong><span id="healthText">100</span></strong></span>
             <span class="stat">Gold: <strong><span id="goldText">50</span></strong></span>
         </div>
+        
         <div id="controls">
             <button id="button1">Go to store</button>
-            <button id="button2">Go to cave</button>
+            <button id="button2">Go to forest</button>
             <button id="button3">Fight dragon</button>
         </div>
+        
         <div id="monsterStats">
             <span class="stat">Monster Name: <strong><span id="monsterName"></span></strong></span>
             <span class="stat">Health: <strong><span id="monsterHealth"></span></strong></span>
         </div>
+        
         <div id="text">
-            Bienvenido a Dragon Blame. Debes derrotar al dragón etc
+            Llegas al pueblo
+           </div>
         </div>
-    </div>
+       <!-- city rodri-->
+        <div id="city" style="display: none;">
+            <button id="goToForest">Ir al bosque</button>
+            <h1>
+                CIUDAD QUE RODRI CREARA EN FUTURO
+            </h1>
+        </div>
+
+            <!-- bosque Juan-->
+            <div id="bosque" style="display: none;">
+                <h2>Bosque</h2>
+                <p>Derrota al slime</p>
+                <div id="slimeFight" class="slime-fight slime-fight-background">
+                    <div id="player" class="slime-fight-player">
+                        <!-- Imagen del personaje -->
+                        <img src="guerrero.jpg" alt="Personaje">
+                        <div id="playerHealthBar" class="health-bar"></div> <!-- Barra de vida del personaje -->
+                    </div>
+                    <div id="slime" class="slime-fight-slime">
+                        <!-- Imagen del slime -->
+                        <img src="slime.jpg" alt="Slime">
+                        <div id="slimeHealthBar" class="health-bar"></div> <!-- Barra de vida del slime -->
+                    </div>
+                </div>
+            </div>
+        
+
     <script src="./script.js"></script>
 </body>
 </html>
