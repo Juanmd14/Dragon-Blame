@@ -1,11 +1,5 @@
-* {
-  padding: 0;
-  margin: 0;
-}
-
 body, html {
-  height: 100%;
-  background-color: #0a0a23;
+background-color: #0a0a23;
 }
 
 #startScreen {
@@ -99,13 +93,107 @@ body, html {
   color: #0a0a23;
 }
 
+#city {
+  max-width: 500px;
+  margin: auto;
+  background-color: #ffffff;
+  color: #0a0a23;
+  padding: 20px;
+  position: absolute;
+}
+
+#game {
+  width: 100%;
+  height: 100%;
+  max-width: 500px;
+  background-color: #ffffff;
+  color: #0a0a23;
+}
+
+#bosque {
+  margin: 0; 
+  padding: 0; 
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('https://png.pngtree.com/background/20230612/original/pngtree-beautiful-cartoon-forest-scene-animated-wallpaper-hd-picture-image_3179942.jpg');
+  background-size: cover; /* Ajusta el tamaño de la imagen para que cubra completamente el contenedor */
+  background-position: center; /* Centra la imagen */
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
+}
+
+
+#player {
+  width: 100px; /* Ancho fijo */
+  height: 100px; /* Altura fija */
+  position: absolute;
+  bottom: 0;
+  left: 30%; /* Centrar horizontalmente */
+  transform: translateX(-50%);
+  z-index: 2; /* Asegurar que esté por encima de otros elementos */
+}
+
+#slime {
+  position: absolute; /* Cambiado de relative a absolute */
+  width: 10vw; /* Ancho al 100% de la ventana del navegador */
+  height: 10vh; /* Altura al 100% de la ventana del navegador */
+  right: 40%; /* Centrar horizontalmente */
+  bottom: 0; /* Alinear en la parte inferior */
+}
+
+#slimeHealthBar {
+  position: absolute; /* Cambiado de relative a absolute */
+  bottom: 0;
+  left: 0;
+  height: 12px; /* Altura de la barra de vida */
+  width: 100%; /* Ancho total */
+  background-color: #00FF00; /* Color de la barra de vida (verde) */
+}
+
+.health-bar {
+  position: absolute; /* Cambiado de relative a absolute */
+  bottom: 0;
+  height: 12px; /* Altura de la barra de vida */
+  width: 100%; /* Ancho total */
+  background-color: #00FF00; /* Color de la barra de vida (verde) */
+}
+
+.slime-fight-player,
+.slime-fight-slime {
+  bottom: 0;
+}
+
+.slime-fight-player img,
+.slime-fight-slime img {
+  width: 80px; /* Ajusta el tamaño del personaje y del slime */
+}
+
+.health-bar {
+  position: absolute;
+  top: 0;
+  height: 12px; /* Altura de la barra de vida */
+  width: 100%; /* Ancho total */
+  
+}
+
+.health-bar {
+  background-color: #00FF00; /* Color de la barra de vida (verde) */
+}
+
 #controls,
 #stats,
 #monsterStats {
   position: relative;
   z-index: 2;
+  
 }
 
+#controls {
+  text-align: center; /* Alinea los botones al centro */
+}
 .stat {
   padding-right: 10px;
 }
