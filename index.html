@@ -4,6 +4,9 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="./styles.css">
     <title>Dragon Blame</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div id="startScreen">
@@ -15,11 +18,12 @@
         <button id="startGame" class="start-button">Start Game</button>
     </div>
     
-    <div id="game">
+    
         <div id="stats">
+            <span class="stat">Nivel: <strong><span id="nivelText">1</span></strong></span>
             <span class="stat">XP: <strong><span id="xpText">0</span></strong></span>
-            <span class="stat">Health: <strong><span id="healthText">100</span></strong></span>
-            <span class="stat">Gold: <strong><span id="goldText">50</span></strong></span>
+            <span class="stat">Vida: <strong><span id="healthText">100</span></strong></span>
+            <span class="stat">Oro: <strong><span id="goldText">50</span></strong></span>
         </div>
         
         <div id="controls">
@@ -32,17 +36,14 @@
             <span class="stat">Monster Name: <strong><span id="monsterName"></span></strong></span>
             <span class="stat">Health: <strong><span id="monsterHealth"></span></strong></span>
         </div>
-        
-        <div id="text">
-            Llegas al pueblo
-           </div>
-        </div>
+                
        <!-- city rodri-->
         <div id="city" style="display: none;">
+          <img id="pueblo1" src="https://img.pikbest.com/origin/09/32/81/75fpIkbEsTygS.jpg!sw800">
             <button id="goToForest">Ir al bosque</button>
-            <h1>
-                CIUDAD QUE RODRI CREARA EN FUTURO
-            </h1>
+            <div id="text">
+              Llegas al pueblo A, no hay mucho, pero divisas una pequeña tienda, un cartel que señala la dirección hacia el bosque, y otro que señala la dirección hacia el pueblo B
+          </div> 
         </div>
 
             <!-- bosque Juan-->
