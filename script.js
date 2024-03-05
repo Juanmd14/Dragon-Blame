@@ -41,9 +41,18 @@ const monsters = [
 ]
 const locations = [
   {
-    name: "inicio",
-    imagen: "https://www.mundodeportivo.com/alfabeta/hero/2021/03/pillars-of-eternity.jpg?width=1200&aspect_ratio=16:9",
-    text: "Bienvenido a Dragon Repeller. Debes derrotar al dragón que impide que la gente abandone el pueblo. Estás en la plaza del pueblo. ¿A donde quieres ir? Utilice los botones de arriba."
+    name: "start",
+    "button text": [startGame],
+    "button fuctions": [],
+    imagen: "https://assets.epuzzle.info/puzzle/111/288/original.webp",
+    text: ""
+  },
+  {
+    name: "town square",
+    "button text": ["Go to store", "Go to cave", "Fight dragon"],
+    "button functions": [goStore, goCave, fightDragon],
+    text: "Llegas al pueblo A, no hay mucho, pero divisas una pequeña tienda, un cartel que señala la dirección hacia el bosque, y otro que señala la dirección hacia el pueblo B",
+    img: "https://img.pikbest.com/origin/09/32/81/75fpIkbEsTygS.jpg!sw800"
   },
   {
     name: "slimeFight",
@@ -51,12 +60,6 @@ const locations = [
     "button functions": [attackSlime, dodgeSlime, goTown],
     text: "Encontraste un slime, que haras?"
 },
-  {
-    name: "town square",
-    "button text": ["Go to store", "Go to cave", "Fight dragon"],
-    "button functions": [goStore, goCave, fightDragon],
-    text: "You are in the town square. You see a sign that says \"Store\"."
-  },
   {
     name: "store",
     "button text": ["Buy 10 health (10 gold)", "Buy weapon (30 gold)", "Go to town square"],
@@ -118,7 +121,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
           // Ocultar pantalla de inicio y mostrar el juego.
           document.getElementById('startScreen').style.display = 'none';
-          document.getElementById('city').style.display = 'block';
+          document.getElementById('city').style.display = 'flex';
+          document.getElementById('stats').style.display = 'flex';
       } else {
           alert('Por favor, ingresa tu nombre antes de comenzar el juego.');
       }
@@ -343,4 +347,3 @@ function pick(guess) {
     }
   }
 }
-
