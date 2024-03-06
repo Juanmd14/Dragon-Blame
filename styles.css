@@ -7,9 +7,8 @@ body, html {
   }
 body img {
   width: 100%;
-  height: 90%;
+  height: 100%;
 }
-
 
   #startScreen {
     display: flex;
@@ -36,8 +35,6 @@ body img {
     opacity: 0.9; /* Opacidad del 90% */
   }
     
-  
-  
   .start-button:hover {
     background-image: linear-gradient(#f8c313, #242424);
     color: #ffffff;
@@ -137,29 +134,15 @@ body img {
     background-color: #e7c967;
     border: 2px solid #ffb300;
   }
+
   #map{
 
   }
-  
+
   #monsterStats{
     display: none;
   }
-
-  #bosque {
-    margin: 0; 
-    padding: 0; 
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: url('https://png.pngtree.com/background/20230612/original/pngtree-beautiful-cartoon-forest-scene-animated-wallpaper-hd-picture-image_3179942.jpg');
-    background-size: cover; /* Ajusta el tamaño de la imagen para que cubra completamente el contenedor */
-    background-position: center; /* Centra la imagen */
-    background-repeat: no-repeat; /* Evita que la imagen se repita */
-  }
-  
+¡
   
   #player {
     width: 100px; /* Ancho fijo */
@@ -243,3 +226,4 @@ body img {
     position: relative;
     z-index: 2;
   }
+
