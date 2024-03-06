@@ -1,8 +1,16 @@
+*{
+  margin: 0;
+  padding: 0;
+}
 body, html {
-  background-color: #0a0a23;
   overflow:hidden;
   }
-  
+body img {
+  width: 100%;
+  height: 90%;
+}
+
+
   #startScreen {
     display: flex;
     flex-direction: column;
@@ -90,18 +98,25 @@ body, html {
     border: 2px solid #ffb300;
     color: #0a0a23;
   }
-  #controls button{
+  #controls{
     display: none;
+    width: 100%;
+    height: 100vh;
+  }
+  #controls button{
+    display: flex;
+    width: 100px;
+    height: 50px;
     background: linear-gradient(to bottom, #f8c313 50%, #b58f04 100%);
   }
   #button1{
-
+    position: relative;
   }
   #button2{
-    
+    position: relative;
   }
   #button3{
-    
+    position: relative;
   }
   #goToForest{
     display: flex;
@@ -114,7 +129,7 @@ body, html {
     background: linear-gradient(to bottom, #f8c313 50%, #b58f04 100%);
   }
   #text{
-    display: flex;
+    display: none;
     position: absolute;
     width: 100%;
     height: 5%;
@@ -122,20 +137,10 @@ body, html {
     background-color: #e7c967;
     border: 2px solid #ffb300;
   }
+  #map{
+
+  }
   
-  #city {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    background-color: #ffffff;
-    color: #0a0a23;
-    padding: 0;
-  }
-  #pueblo1{
-    width: 100%;
-    height: 90%;
-  }
   #monsterStats{
     display: none;
   }
