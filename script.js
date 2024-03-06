@@ -69,21 +69,23 @@ const locations = [
     "button text": ["Pelear al slime", "Pedir clemencia a diosito", "Huir"],
     "button functions": [fightSlime, goTown, goTown],
     text: "Encontraste un slime, que haras?",
-    img: 'url("https://t4.ftcdn.net/jpg/01/38/81/53/360_F_138815333_nxZVxnha49hAHSHeyIzcfz58c8s8ZRHC.jpg")'
+    img: 'url("https://cdn.openart.ai/uploads/image_2Arz5q0A_1709750890494_raw.jpg")'
   },
   {
     name: "Slime fight",
     "button text": ["Atacar", "Esquivar", "Huir"],
     "button functions": [attackSlime, dodgeSlime, goTown],
     text: "Blurp, Blurp",
-    img: 'url("https://t4.ftcdn.net/jpg/01/38/81/53/360_F_138815333_nxZVxnha49hAHSHeyIzcfz58c8s8ZRHC.jpg")'
+    img: 'url("https://cdn.openart.ai/uploads/image_2Arz5q0A_1709750890494_raw.jpg")'
   },
  
   {
     name: "Cave",
     "button text": ["Un slime", "Bestia ", "Huir"],
     "button functions": [fightSlime, fightBeast, goTown],
-    text: "You enter the cave. You see some monsters."
+    text: "You enter the cave. You see some monsters.",
+    img: 'url("https://cdn.openart.ai/uploads/image_V5b__ZjY_1709749892782_raw.jpg")'
+  
   },
   {
     name: "fight",
