@@ -6,6 +6,7 @@ let fighting;
 let monsterHealth;
 let inventory = ["stick"];
 
+const body = document.querySelector('body');
 const button1 = document.querySelector('#button1');
 const button2 = document.querySelector("#button2");
 const button3 = document.querySelector("#button3");
@@ -48,11 +49,13 @@ const locations = [
     text: ""
   },
   {
-    name: "town square",
-    "button text": ["Go to store", "Go to cave", "Fight dragon"],
+    name: "Pueblo A",
+    "button text": ["Entrar a la tienda", "Ir al bosque", "Seguir camino hacia las montañas"],
     "button functions": [goStore, goCave, fightDragon],
+    "button position top": [450,400,300],
+    "button position left": ["250","1150","550"],
     text: "Llegas al pueblo A, no hay mucho, pero divisas una pequeña tienda, un cartel que señala la dirección hacia el bosque, y otro que señala la dirección hacia el pueblo B",
-    img: "https://img.pikbest.com/origin/09/32/81/75fpIkbEsTygS.jpg!sw800"
+    img: 'url("https://img.pikbest.com/origin/09/32/81/75fpIkbEsTygS.jpg!sw800")'
   },
   {
     name: "slimeFight",
@@ -105,36 +108,14 @@ const locations = [
 ];
 
 
-document.addEventListener('DOMContentLoaded', function() {
-  const welcomeMessage = document.querySelector('.welcome-message');
-
-  // retrasa el tiempo del mensaje al principio
-  setTimeout(() => {
-      welcomeMessage.classList.add('show');
-  }, 500);
-
-  // click para inicio
-  document.getElementById('startGame').addEventListener('click', function() {
-      var playerName = document.getElementById('playerName').value;
-      if (playerName.trim() !== '') {
-          // Aquí puedes hacer algo con el nombre del jugador, como mostrarlo en algún lugar del juego.
-
-          // Ocultar pantalla de inicio y mostrar el juego.
-          document.getElementById('startScreen').style.display = 'none';
-          document.getElementById('city').style.display = 'flex';
-          document.getElementById('stats').style.display = 'flex';
-      } else {
-          alert('Por favor, ingresa tu nombre antes de comenzar el juego.');
-      }
-  });
-});
 
 const goToForestButton = document.getElementById('goToForest');
 
-goToForestButton.addEventListener('click', function() {
-    document.getElementById('city').style.display = 'none'; // Oculta la ciudad
-    document.getElementById('bosque').style.display = 'block'; // Muestra el bosque
-});
+// era lo del boton para ir al bosque pero al eliminar el div "city" del html lo rompe
+//goToForestButton.addEventListener('click', function() {
+    //document.getElementById('city').style.display = 'none'; // Oculta la ciudad
+//    document.getElementById('bosque').style.display = 'block'; // Muestra el bosque
+//});
 
 
 // initialize buttons
@@ -143,13 +124,23 @@ button2.onclick = goForest;
 button3.onclick = fightDragon;
 
 function update(location) {
-  monsterStats.style.display = "none";
+  // monsterStats.style.display = "none";
+  body.style.backgroundImage = location.img;
+  body.style.backgroundSize = "cover";
   button1.innerText = location["button text"][0];
   button2.innerText = location["button text"][1];
   button3.innerText = location["button text"][2];
   button1.onclick = location["button functions"][0];
   button2.onclick = location["button functions"][1];
   button3.onclick = location["button functions"][2];
+
+  button1.style.top = location["button position top"][0];
+  button2.style.top = location["button position top"][1];
+  button3.style.top = location["button position top"][2];
+  button1.style.left = location["button position left"][0];
+  button2.style.left = location["button position left"][1];
+  button3.style.left = location["button position left"][2];
+
   text.innerHTML = location.text;
 }
 
@@ -347,3 +338,33 @@ function pick(guess) {
     }
   }
 }
+
+function inicio(){
+  
+    const welcomeMessage = document.querySelector('.welcome-message');
+  
+    // retrasa el tiempo del mensaje al principio
+    setTimeout(() => {
+        welcomeMessage.classList.add('show');
+    }, 500);
+  
+    // click para inicio
+    document.getElementById('startGame').addEventListener('click', function() {
+        var playerName = document.getElementById('playerName').value;
+        if (playerName.trim() !== '') {
+            // Aquí puedes hacer algo con el nombre del jugador, como mostrarlo en algún lugar del juego.
+  
+            // Ocultar pantalla de inicio y mostrar el juego.
+            document.getElementById('startScreen').style.display = 'none';
+            update(locations[1]);
+            text.style.display='flex';
+           // document.getElementById('city').style.display = 'flex';
+            document.getElementById('stats').style.display = 'flex';
+            document.getElementById('controls').style.display= 'flex';
+        } else {
+            alert('Por favor, ingresa tu nombre antes de comenzar el juego.');
+        }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', inicio());
