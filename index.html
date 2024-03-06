@@ -9,16 +9,16 @@
     <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id="startScreen">
-        <img id="intro" src="https://assets.epuzzle.info/puzzle/111/288/original.webp">
-        <div class="welcome-message">
-            <h1>Bienvenido a Dragon Blame</h1>
+    <div id="game">
+        <div id="startScreen">
+            <img id="intro" src="https://assets.epuzzle.info/puzzle/111/288/original.webp" style="height: auto;">>
+            <div class="welcome-message">
+                <h1>Bienvenido a Dragon Blame</h1>
+            </div>
+            <input type="text" id="playerName" placeholder="Ingresa tu nombre" required>
+            <button id="startGame" class="start-button">Start Game</button>
         </div>
-        <input type="text" id="playerName" placeholder="Ingresa tu nombre" required>
-        <button id="startGame" class="start-button">Start Game</button>
-    </div>
-    
-    
+        
         <div id="stats">
             <span class="stat">Nivel: <strong><span id="nivelText">1</span></strong></span>
             <span class="stat">XP: <strong><span id="xpText">0</span></strong></span>
@@ -41,34 +41,7 @@
         </div> 
 
         <button id="map">Mapa</button>
-                
-       <!-- city rodri
-        <div id="city" style="display: none;">
-          <img id="pueblo1" src="https://img.pikbest.com/origin/09/32/81/75fpIkbEsTygS.jpg!sw800">
-            <button id="goToForest">Ir al bosque</button>
-            <div id="text">
-              Llegas al pueblo A, no hay mucho, pero divisas una pequeña tienda, un cartel que señala la dirección hacia el bosque, y otro que señala la dirección hacia el pueblo B
-          </div> 
-        </div>-->
-
-            <!-- bosque Juan-->
-            <div id="bosque" style="display: none;">
-                <h2>Bosque</h2>
-                <p>Derrota al slime</p>
-                <div id="slimeFight" class="slime-fight slime-fight-background">
-                    <div id="player" class="slime-fight-player">
-                        <!-- Imagen del personaje -->
-                        <img src="guerrero.jpg" alt="Personaje">
-                        <div id="playerHealthBar" class="health-bar"></div> <!-- Barra de vida del personaje -->
-                    </div>
-                    <div id="slime" class="slime-fight-slime">
-                        <!-- Imagen del slime -->
-                        <img src="slime.jpg" alt="Slime">
-                        <div id="slimeHealthBar" class="health-bar"></div> <!-- Barra de vida del slime -->
-                    </div>
-                </div>
-            </div>
-        
+    </div>
 
     <script src="./script.js"></script>
 </body>
