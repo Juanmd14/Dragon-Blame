@@ -44,34 +44,44 @@ const locations = [
   {
     name: "start",
     "button text": [startGame],
-    "button fuctions": [],
+    "button functions": [startGame],
     imagen: "https://assets.epuzzle.info/puzzle/111/288/original.webp",
     text: ""
   },
   {
     name: "Pueblo A",
     "button text": ["Entrar a la tienda", "Ir al bosque", "Seguir camino hacia las montañas"],
-    "button functions": [goStore, goCave, fightDragon],
+    "button functions": [goStore, goForest, goMountain],
     "button position top": [450,400,300],
     "button position left": ["250","1150","550"],
     text: "Llegas al pueblo A, no hay mucho, pero divisas una pequeña tienda, un cartel que señala la dirección hacia el bosque, y otro que señala la dirección hacia el pueblo B",
     img: 'url("https://img.pikbest.com/origin/09/32/81/75fpIkbEsTygS.jpg!sw800")'
   },
   {
-    name: "slimeFight",
-    "button text": ["Attack", "Dodge", "Run"],
-    "button functions": [attackSlime, dodgeSlime, goTown],
-    text: "Encontraste un slime, que haras?"
-},
-  {
-    name: "store",
-    "button text": ["Buy 10 health (10 gold)", "Buy weapon (30 gold)", "Go to town square"],
+    name: "Store",
+    "button text": ["Comprar 10 de vida (10 de oro)", "Comprar un arma (30 de oro)", "Volver"],
     "button functions": [buyHealth, buyWeapon, goTown],
-    text: "You enter the store."
+    text: "Entras a una tienda por suministros.",
+    img: 'url("https://cdn.openart.ai/uploads/image_cK-y_XFZ_1709698674982_512.webp")'
   },
   {
-    name: "cave",
-    "button text": ["Fight slime", "Fight fanged beast", "Go to town square"],
+    name: "Bosque",
+    "button text": ["Pelear al slime", "Pedir clemencia a diosito", "Huir"],
+    "button functions": [fightSlime, goTown, goTown],
+    text: "Encontraste un slime, que haras?",
+    img: 'url("https://t4.ftcdn.net/jpg/01/38/81/53/360_F_138815333_nxZVxnha49hAHSHeyIzcfz58c8s8ZRHC.jpg")'
+  },
+  {
+    name: "Slime fight",
+    "button text": ["Atacar", "Esquivar", "Huir"],
+    "button functions": [attackSlime, dodgeSlime, goTown],
+    text: "Blurp, Blurp",
+    img: 'url("https://t4.ftcdn.net/jpg/01/38/81/53/360_F_138815333_nxZVxnha49hAHSHeyIzcfz58c8s8ZRHC.jpg")'
+  },
+ 
+  {
+    name: "Cave",
+    "button text": ["Un slime", "Bestia ", "Huir"],
     "button functions": [fightSlime, fightBeast, goTown],
     text: "You enter the cave. You see some monsters."
   },
@@ -104,19 +114,15 @@ const locations = [
     "button text": ["2", "8", "Go to town square?"],
     "button functions": [pickTwo, pickEight, goTown],
     text: "You find a secret game. Pick a number above. Ten numbers will be randomly chosen between 0 and 10. If the number you choose matches one of the random numbers, you win!"
-  }
+  },
+  {
+    name: "Montañas",
+    "button text": ["Entrar a la cueva", "Pasar la noche y volver al otro dia", "Volver a la ciudad llorando"],
+    "button functions": [goCave, goTown, goTown],
+    text: "La montaña estaba vacia y el frio congelaba mis",
+    img: 'url("https://cdn.openart.ai/uploads/image__bTHPcwg_1709702850630_raw.jpg")'
+  },
 ];
-
-
-
-const goToForestButton = document.getElementById('goToForest');
-
-// era lo del boton para ir al bosque pero al eliminar el div "city" del html lo rompe
-//goToForestButton.addEventListener('click', function() {
-    //document.getElementById('city').style.display = 'none'; // Oculta la ciudad
-//    document.getElementById('bosque').style.display = 'block'; // Muestra el bosque
-//});
-
 
 // initialize buttons
 button1.onclick = goStore;
@@ -124,9 +130,9 @@ button2.onclick = goForest;
 button3.onclick = fightDragon;
 
 function update(location) {
-  // monsterStats.style.display = "none";
   body.style.backgroundImage = location.img;
-  body.style.backgroundSize = "cover";
+  body.style.backgroundSize = "cover"; // Ajusta la imagen para que cubra completamente el contenedor
+  body.style.backgroundPosition = "center";
   button1.innerText = location["button text"][0];
   button2.innerText = location["button text"][1];
   button3.innerText = location["button text"][2];
@@ -141,19 +147,24 @@ function update(location) {
   button2.style.left = location["button position left"][1];
   button3.style.left = location["button position left"][2];
 
-  text.innerHTML = location.text;
 }
+  
+
 
 function goTown() {
-  update(locations[0]);
-}
-
-function goStore() {
   update(locations[1]);
 }
 
-function goCave() {
+function goStore() {
   update(locations[2]);
+}
+
+function goMountain() {
+  update(locations[11]);
+}
+
+function goCave() {
+  update(locations[5]);
 }
 
 function buyHealth() {
@@ -200,7 +211,7 @@ function sellWeapon() {
 }
 
 function fightSlime() {
-    update(locations[1]); // Corregido el índice para apuntar al escenario slimeFight
+    update(locations[4]); // Corregido el índice para apuntar al escenario slimeFight
   }
 
 
@@ -225,11 +236,11 @@ function fightDragon() {
 }
 
 function goForest() {
-  update(locations[1]); // Actualiza a la pelea con el slime en el bosque
+  update(locations[3]); // Actualiza a la ubicación del bosque
 }
 
 function goFight() {
-  update(locations[3]);
+  update(locations[6]);
   monsterHealth = monsters[fighting].health;
   monsterStats.style.display = "block";
   monsterName.innerText = monsters[fighting].name;
@@ -285,11 +296,11 @@ function defeatMonster() {
 }
 
 function lose() {
-  update(locations[5]);
+  update(locations[8]);
 }
 
 function winGame() {
-  update(locations[6]);
+  update(locations[9]);
 }
 
 function restart() {
@@ -305,7 +316,7 @@ function restart() {
 }
 
 function easterEgg() {
-  update(locations[7]);
+  update(locations[10]);
 }
 
 function pickTwo() {
@@ -352,7 +363,7 @@ function inicio(){
     document.getElementById('startGame').addEventListener('click', function() {
         var playerName = document.getElementById('playerName').value;
         if (playerName.trim() !== '') {
-            // Aquí puedes hacer algo con el nombre del jugador, como mostrarlo en algún lugar del juego.
+            // Aquí puedes hacer algo con el nombre del jugador, como mostrarlo.
   
             // Ocultar pantalla de inicio y mostrar el juego.
             document.getElementById('startScreen').style.display = 'none';
@@ -368,3 +379,4 @@ function inicio(){
   }
 
   document.addEventListener('DOMContentLoaded', inicio());
+
