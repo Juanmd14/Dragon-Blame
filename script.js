@@ -88,19 +88,19 @@ const locations = [
   },
  
   {
-    name: "Cave",
-    "button text": ["Rezar y lanzarse a la pelea", "Pelear a la Bestia ", "Huir"],
-    "button functions": [fightBeast, fightBeast, goTown],
-    "button position top": ["33%","33%","80%"],
-    "button position left": ["45%","33%","45%"],
-    text: "You enter the cave. You see some monsters.",
+    name: "cave",
+    "button text": ["Pelear a la Bestia ", "Huir"],
+    "button functions": [fightBeast, goTown],
+    "button position top": ["33%","80%"],
+    "button position left": ["37%","45%"],
+    text: "Entras a la cueva y en la oscuridad ves la bestia.",
     img: "img/Cueva.jpg"
   
   },
   {
     name: "fight bestia",
     "button text": ["Atacar", "Esquivar", "Huir"],
-    "button functions": [attack, dodge, goTown],
+    "button functions": [attack, dodge, goMountain],
     text: "La bestia era enorme",
     img : "img/Bestia pelea.jpg"
   },
@@ -114,6 +114,8 @@ const locations = [
   {
     name: "lose",
     "button text": ["Jugar de nuevo?"],
+    "button position top": ["10%"],
+    "button position left": ["55%"],
     "button functions": [restart],
     text: "Has muerto. &#x2620;",
     img: "img/muerto.jpg"
@@ -143,8 +145,8 @@ const locations = [
     name: "Escondido del slime",
     "button text": ["Levantarse e irse"],
     "button functions": [goTown],
-    "button position top": "40%",
-    "button position left": "0%",
+    "button position top": "50%",
+    "button position left": "50%",
     text: "Como no ataque al slime este solo se subio a un arbol y me observaba",
     img: "img/Slime escondido.jpg"
   },
@@ -164,12 +166,12 @@ function update(location) {
   button3.style.display = 'none';
 
   // Verifica si estamos en "Escondido del slime"
-  if (location.name === "Escondido del slime") {
+  if (location.name === "Escondido del slime" ||  location.name === "lose") {  // aca agregas locations si queres que se muestre 1 solo boton
     // Muestra solo el botón de "Huir"
-    button3.innerText = location["button text"][0]; // Cambiado de 2 a 0 ya que solo hay un botón en esta ubicación
-    button3.onclick = location["button functions"][0]; // Cambiado de 2 a 0 ya que solo hay una función para este botón
-    button3.style.display = 'block';
-  } else if (location.name === "Montañas") {
+    button1.innerText = location["button text"][0]; // Cambiado de 2 a 0 ya que solo hay un boton
+    button1.onclick = location["button functions"][0]; // Cambiado de 2 a 0 ya que solo hay una funcion
+    button1.style.display = 'block';       
+  } else if (location.name === "Montañas"  ||  location.name === "cave") {   //aca tambien podemos agregar mas locations
     // Muestra solo 2 botones 
     button1.innerText = location["button text"][0]; 
     button1.onclick = location["button functions"][0]; 
@@ -177,12 +179,8 @@ function update(location) {
     button2.innerText = location["button text"][1]; 
     button2.onclick = location["button functions"][1]; 
     button2.style.display = 'block';
-  } else if (location.name === "Matar") {
-      button3.innerText = location["button text"][0];
-      button3.onclick = location["button functions"][0];
-      button3.style.display = 'block';
   } else {
-    // Si no estamos escondidos detrás del árbol o en la montañita, muestra los botones normales
+    //  muestra los botones normales
     button1.innerText = location["button text"][0];
     button1.onclick = location["button functions"][0];
     button1.style.display = 'block';
@@ -203,7 +201,7 @@ function update(location) {
 }
   // text.innerHTML = location.text; // Rodri: momentaneamente lo saco para que veas como queda el fondo del texto, tengo que ver como hacer para que cuando se escriba el texto se ponga sobre eso, porque me lo elimina
 
-
+//ESPERO QUE ACOMODES EL TEXT 
 
 
 function goTown() {
