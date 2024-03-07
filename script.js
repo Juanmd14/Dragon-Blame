@@ -101,6 +101,8 @@ const locations = [
     name: "fight bestia",
     "button text": ["Atacar", "Esquivar", "Huir"],
     "button functions": [attack, dodge, goMountain],
+    "button position top": ["75%","75%","75%"],
+    "button position left": ["35%","40%","45%"],
     text: "La bestia era enorme",
     img : "img/Bestia pelea.jpg"
   },
