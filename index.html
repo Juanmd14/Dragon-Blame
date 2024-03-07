@@ -9,16 +9,19 @@
     <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div id="fondo">
+        <img id="fondoimg">
+    </div>
     <div id="game">
         <div id="startScreen">
-            <img id="intro" src="https://assets.epuzzle.info/puzzle/111/288/original.webp" style="height: auto;">>
+            <img id="intro" src="https://assets.epuzzle.info/puzzle/111/288/original.webp"> <!--style="height: auto;" Rodri: lo saco porque no se veia completa la imagen-->
             <div class="welcome-message">
                 <h1>Bienvenido a Dragon Blame</h1>
             </div>
             <input type="text" id="playerName" placeholder="Ingresa tu nombre" required>
             <button id="startGame" class="start-button">Start Game</button>
         </div>
-        
+
         <div id="stats">
             <span class="stat">Nivel: <strong><span id="nivelText">1</span></strong></span>
             <span class="stat">XP: <strong><span id="xpText">0</span></strong></span>
@@ -38,10 +41,12 @@
         </div>
         
         <div id="text">
+            <img src="https://www.ibackdrop.com/cdn/shop/products/PirateandNauticalThemedParchmentTextureBackgroundPortraitPhotographyBackdropsIBD-20001.jpg?v=1605693251">
         </div> 
 
         <button id="map">Mapa</button>
     </div>
+    
 
     <script src="./script.js"></script>
 </body>
