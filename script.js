@@ -73,9 +73,9 @@ const locations = [
     "button text": ["Pelear al slime", "Esconderse detras de un arbol", "Huir"],
     "button functions": [fightSlime, goThree, goTown],
     "button position top": ["55%","30%","74%"],
-    "button position left": ["80%","64%","40%"],
+    "button position left": ["10%","74%","70%"],
     text: "Encontraste un grupo de slime, que haras?",
-    img: "img/Bosque.jpg"
+    img: "img/Bosque2.jpg"
   },
   {
     name: "slime fight",
@@ -84,7 +84,7 @@ const locations = [
     "button position top": ["75%","75%","75%"],
     "button position left": ["35%","40%","45%"],
     text: "Blurp, Blurp",
-    img: "img/Bosque.jpg"
+    img: "img/Slime fight2.jpg"
   },
  
   {
@@ -118,11 +118,11 @@ const locations = [
   {
     name: "lose",
     "button text": ["Jugar de nuevo?"],
-    "button position top": ["10%"],
-    "button position left": ["55%"],
+    "button position top": ["32%"],
+    "button position left": ["48%"],
     "button functions": [restart],
     text: "Has muerto. &#x2620;",
-    img: "img/muerto.jpg"
+    img: "img/Muerte.jpg"
   },
   { 
     name: "win", 
@@ -147,12 +147,12 @@ const locations = [
   },
   {
     name: "Escondido del slime",
-    "button text": ["Levantarse e irse"],
+    "button text": ["Ya no te ve es hora de irte"],
     "button functions": [goTown],
-    "button position top": "50%",
-    "button position left": "50%",
-    text: "Como no ataque al slime este solo se subio a un arbol y me observaba",
-    img: "img/Slime escondido.jpg"
+    "button position top": ["50%"],
+    "button position left": ["78%"],
+    text: "rodeando el arbol el slime ya no me ve",
+    img: "img/escondido.jpg"
   },
   {
     name: "Pueblo B",
@@ -161,7 +161,16 @@ const locations = [
     "button position top": ["40%","35%","30%"],
     "button position left": ["13%","70%","18%"],
     text: "Llegas al pueblo A, no hay mucho, pero divisas una pequeña tienda, un cartel que señala la dirección hacia el bosque, y otro que señala la dirección hacia el pueblo B",
-    img: "https://img.pikbest.com/origin/09/32/81/75fpIkbEsTygS.jpg!sw800"
+    img: "img/Ciudad b v1.jpg"
+  },
+  {
+    name: "Dragon",
+    "button text": ["Entrar a la tienda", "Dragon?", "Seguir camino hacia las montañas"],
+    "button functions": [goStore, fightDragon, goMountain],
+    "button position top": ["40%","35%","30%"],
+    "button position left": ["13%","70%","18%"],
+    text: "Llegas al pueblo A, no hay mucho, pero divisas una pequeña tienda, un cartel que señala la dirección hacia el bosque, y otro que señala la dirección hacia el pueblo B",
+    img: "img/Ciudad b v1.jpg"
   },
 ];
 
