@@ -115,6 +115,18 @@ body img {
   #button3{
     position: relative;
   }
+
+  #fondo{
+    display: none;
+    width: 100%;
+    height: 90%;
+    position: absolute;
+  }
+
+  #fondoimg{
+    object-fit: fill;
+  }
+
   #goToForest{
     display: flex;
     position: absolute;
@@ -129,14 +141,18 @@ body img {
     display: none;
     position: absolute;
     width: 100%;
-    height: 5%;
+    height: 10%;
     bottom: 0;
     background-color: #e7c967;
-    border: 2px solid #ffb300;
+    border: 2px solid black;
+  }
+  #text img{
+    object-fit: cover;
+    height: 100%;
   }
 
   #map{
-
+    display: none;
   }
 
   #monsterStats{
@@ -226,4 +242,3 @@ body img {
     position: relative;
     z-index: 2;
   }
-
