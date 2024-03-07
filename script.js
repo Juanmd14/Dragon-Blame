@@ -6,6 +6,8 @@ let fighting;
 let monsterHealth;
 let inventory = ["stick"];
 
+const fondoimg = document.getElementById('fondoimg');
+const fondo = document.getElementById('fondo');
 const body = document.querySelector('body');
 const button1 = document.querySelector('#button1');
 const button2 = document.querySelector("#button2");
@@ -52,31 +54,33 @@ const locations = [
     name: "Pueblo A",
     "button text": ["Entrar a la tienda", "Ir al bosque", "Seguir camino hacia las montañas"],
     "button functions": [goStore, goForest, goMountain],
-    "button position top": [450,400,300],
-    "button position left": ["250","1150","550"],
+    "button position top": ["40%","35%","30%"],
+    "button position left": ["13%","70%","18%"],
     text: "Llegas al pueblo A, no hay mucho, pero divisas una pequeña tienda, un cartel que señala la dirección hacia el bosque, y otro que señala la dirección hacia el pueblo B",
-    img: 'url("https://img.pikbest.com/origin/09/32/81/75fpIkbEsTygS.jpg!sw800")'
+    img: "https://img.pikbest.com/origin/09/32/81/75fpIkbEsTygS.jpg!sw800"
   },
   {
     name: "Store",
     "button text": ["Comprar 10 de vida (10 de oro)", "Comprar un arma (30 de oro)", "Volver"],
     "button functions": [buyHealth, buyWeapon, goTown],
+    "button position top": ["50%","60%","75%"],
+    "button position left": ["75%","25%","30%"],
     text: "Entras a una tienda por suministros.",
-    img: 'url("https://cdn.openart.ai/uploads/image_cK-y_XFZ_1709698674982_512.webp")'
+    img: "https://cdn.openart.ai/uploads/image_cK-y_XFZ_1709698674982_512.webp"
   },
   {
     name: "Bosque",
     "button text": ["Pelear al slime", "Pedir clemencia a diosito", "Huir"],
     "button functions": [fightSlime, goTown, goTown],
     text: "Encontraste un slime, que haras?",
-    img: 'url("https://cdn.openart.ai/uploads/image_2Arz5q0A_1709750890494_raw.jpg")'
+    img: "https://cdn.openart.ai/uploads/image_2Arz5q0A_1709750890494_raw.jpg"
   },
   {
     name: "Slime fight",
     "button text": ["Atacar", "Esquivar", "Huir"],
     "button functions": [attackSlime, dodgeSlime, goTown],
     text: "Blurp, Blurp",
-    img: 'url("https://cdn.openart.ai/uploads/image_2Arz5q0A_1709750890494_raw.jpg")'
+    img: "https://cdn.openart.ai/uploads/image_2Arz5q0A_1709750890494_raw.jpg"
   },
  
   {
@@ -84,7 +88,7 @@ const locations = [
     "button text": ["Un slime", "Bestia ", "Huir"],
     "button functions": [fightSlime, fightBeast, goTown],
     text: "You enter the cave. You see some monsters.",
-    img: 'url("https://cdn.openart.ai/uploads/image_V5b__ZjY_1709749892782_raw.jpg")'
+    img: "https://cdn.openart.ai/uploads/image_V5b__ZjY_1709749892782_raw.jpg"
   
   },
   {
@@ -122,7 +126,7 @@ const locations = [
     "button text": ["Entrar a la cueva", "Pasar la noche y volver al otro dia", "Volver a la ciudad llorando"],
     "button functions": [goCave, goTown, goTown],
     text: "La montaña estaba vacia y el frio congelaba mis",
-    img: 'url("https://cdn.openart.ai/uploads/image__bTHPcwg_1709702850630_raw.jpg")'
+    img: "https://cdn.openart.ai/uploads/image__bTHPcwg_1709702850630_raw.jpg"
   },
 ];
 
@@ -132,9 +136,10 @@ button2.onclick = goForest;
 button3.onclick = fightDragon;
 
 function update(location) {
-  body.style.backgroundImage = location.img;
-  body.style.backgroundSize = "cover"; // Ajusta la imagen para que cubra completamente el contenedor
-  body.style.backgroundPosition = "center";
+  fondoimg.setAttribute("src",location.img); //cambia la imagen del fondo en el div fondo
+  //fondo.style.backgroundImage = location.img;
+  //fondo.style.backgroundSize = "cover"; // Ajusta la imagen para que cubra completamente el contenedor
+  //fondo.style.backgroundPosition = "center";
   button1.innerText = location["button text"][0];
   button2.innerText = location["button text"][1];
   button3.innerText = location["button text"][2];
@@ -149,6 +154,7 @@ function update(location) {
   button2.style.left = location["button position left"][1];
   button3.style.left = location["button position left"][2];
 
+  // text.innerHTML = location.text; // Rodri: momentaneamente lo saco para que veas como queda el fondo del texto, tengo que ver como hacer para que cuando se escriba el texto se ponga sobre eso, porque me lo elimina
 }
   
 
@@ -369,6 +375,7 @@ function inicio(){
   
             // Ocultar pantalla de inicio y mostrar el juego.
             document.getElementById('startScreen').style.display = 'none';
+            document.getElementById('fondo').style.display = 'flex';
             update(locations[1]);
             text.style.display='flex';
            // document.getElementById('city').style.display = 'flex';
@@ -381,4 +388,3 @@ function inicio(){
   }
 
   document.addEventListener('DOMContentLoaded', inicio());
-
