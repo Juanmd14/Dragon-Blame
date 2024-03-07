@@ -78,7 +78,7 @@ const locations = [
     img: "img/Bosque.jpg"
   },
   {
-    name: "Slime fight",
+    name: "slime fight",
     "button text": ["Atacar", "Esquivar", "Huir"],
     "button functions": [attack, dodge, goTown],
     "button position top": ["75%","75%","75%"],
@@ -108,9 +108,11 @@ const locations = [
   },
   {
     name: "kill monster",
-    "button text": "Volver a casa",
-    "button functions": [goTown],
-    text: 'El monstruo cae y obtienes experiencia y oro.',
+    "button text": ["Volver a casa","Volver a casa", "Volver a casa"],
+    "button functions": [goTown, goTown, goTown],
+    "button position top": ["75%","75%","75%"],
+    "button position left": ["35%","40%","45%"],
+    text: "El monstruo cae y obtienes experiencia y oro.",
     img :"https://sm.ign.com/t/ign_latam/screenshot/default/vegeta-vegeta_481w.1280.jpg"
   },
   {
@@ -136,8 +138,8 @@ const locations = [
   },
   {
     name: "Montañas",
-    "button text": ["Entrar a la cueva", "Volver a la ciudad","Pasar la noche y volver a la ciudad"],
-    "button functions": [goCave, goTown, goTown],
+    "button text": ["Entrar a la cueva", "Volver a la ciudad","Ir a la ciudad que sigue por el camino"],
+    "button functions": [goCave, goTown, goTown2],
     "button position top": ["80%","50%","60%"],
     "button position left": ["40%","60%","80%"],
     text: "La montaña estaba vacia y el frio congelaba mis",
@@ -152,8 +154,47 @@ const locations = [
     text: "Como no ataque al slime este solo se subio a un arbol y me observaba",
     img: "img/Slime escondido.jpg"
   },
+  {
+    name: "Pueblo B",
+    "button text": ["Entrar a la tienda", "Dragon?", "Seguir camino hacia las montañas"],
+    "button functions": [goStore, fightDragon, goMountain],
+    "button position top": ["40%","35%","30%"],
+    "button position left": ["13%","70%","18%"],
+    text: "Llegas al pueblo A, no hay mucho, pero divisas una pequeña tienda, un cartel que señala la dirección hacia el bosque, y otro que señala la dirección hacia el pueblo B",
+    img: "https://img.pikbest.com/origin/09/32/81/75fpIkbEsTygS.jpg!sw800"
+  },
 ];
 
+
+function inicio(){
+  const welcomeMessage = document.querySelector('.welcome-message');
+
+  // retrasa el tiempo del mensaje al principio
+  setTimeout(() => {
+      welcomeMessage.classList.add('show');
+  }, 500);
+
+  // click para inicio
+  document.getElementById('startGame').addEventListener('click', function() {
+      var playerName = document.getElementById('playerName').value;
+      if (playerName.trim() !== '') {
+          // Aquí puedes hacer algo con el nombre del jugador, como mostrarlo.
+
+          // Ocultar pantalla de inicio y mostrar el juego.
+          document.getElementById('startScreen').style.display = 'none';
+          document.getElementById('fondo').style.display = 'flex';
+          update(locations[1]);
+          text.style.display='flex';
+          document.getElementById('stats').style.display = 'flex';
+          document.getElementById('controls').style.display= 'flex';
+      } else {
+          alert('Por favor, ingresa tu nombre antes de comenzar el juego.');
+      }
+  });
+}
+
+// Evento DOMContentLoaded para llamar a la función inicio()
+document.addEventListener('DOMContentLoaded', inicio());
 // initialize buttons
 button1.onclick = goStore;
 button2.onclick = goForest;
@@ -173,7 +214,7 @@ function update(location) {
     button1.innerText = location["button text"][0]; // Cambiado de 2 a 0 ya que solo hay un boton
     button1.onclick = location["button functions"][0]; // Cambiado de 2 a 0 ya que solo hay una funcion
     button1.style.display = 'block';       
-  } else if (location.name === "Montañas"  ||  location.name === "cave") {   //aca tambien podemos agregar mas locations
+  } else if (location.name === "cave") {   //aca tambien podemos agregar mas locations
     // Muestra solo 2 botones 
     button1.innerText = location["button text"][0]; 
     button1.onclick = location["button functions"][0]; 
@@ -223,7 +264,11 @@ function goThree() {
 }
 
 function goCave() {
-  update(locations[5]);
+  update(locations[5]); 
+}
+
+function goTown2() {
+  update(locations[13]);
 }
 
 function buyHealth() {
@@ -271,18 +316,20 @@ function sellWeapon() {
 
 function fightSlime() {
   fighting = 0; // Inicializa fighting en 0 cuando peleas con el slime
-  update(locations[4]); // Esta línea actualiza la ubicación a la pelea con el slime
+  goFight(); //manda a la pelea
+  update(locations[4]); //  actualiza la ubicación a la pelea con el slime
 }
 
-function fightBeast() {
+function fightBeast() { //lo mismo pero con la bestia
   fighting = 1;
   goFight();
   update(locations[6]);
 }
 
-function fightDragon() {
+function fightDragon() { //dragon fight
   fighting = 2;
   goFight();
+  update(locations[13]);
 }
 
 function goForest() {
@@ -290,8 +337,11 @@ function goForest() {
 }
 
 function goFight() {
-  update(locations[6]);
   monsterHealth = monsters[fighting].health;
+  monsterHealthText.innerText = monsterHealth; // Agrega esta línea para actualizar el texto de la salud del monstruo en la interfaz
+  console.log("Vida del monstruo al entrar a la pelea:", monsterHealth);
+  update(locations[6]);
+  
   monsterStats.style.display = "block";
   monsterName.innerText = monsters[fighting].name;
   monsterHealthText.innerText = monsterHealth;
@@ -305,7 +355,12 @@ function attack() {
     // Calcula el daño infligido al monstruo
     let playerDamage = weapons[currentWeapon].power + Math.floor(Math.random() * xp) + 1;
     text.innerText += " ¡Has infligido " + playerDamage + " de daño!";
+    console.log(`monsterHealth antes del ataque: ${monsterHealth}`);
     monsterHealth -= playerDamage;
+    console.log(`monsterHealth después del ataque: ${monsterHealth}`);
+    
+    // Asegúrate de actualizar el texto de la salud del monstruo en la interfaz
+    monsterHealthText.innerText = monsterHealth;
   } else {
     text.innerText += " Has fallado.";
   }
@@ -411,33 +466,3 @@ if (location["button functions"] && location["button functions"].length > 0) {
   button1.onclick = location["button functions"][0];
 }
 
-function inicio(){
-  
-    const welcomeMessage = document.querySelector('.welcome-message');
-  
-    // retrasa el tiempo del mensaje al principio
-    setTimeout(() => {
-        welcomeMessage.classList.add('show');
-    }, 500);
-  
-    // click para inicio
-    document.getElementById('startGame').addEventListener('click', function() {
-        var playerName = document.getElementById('playerName').value;
-        if (playerName.trim() !== '') {
-            // Aquí puedes hacer algo con el nombre del jugador, como mostrarlo.
-  
-            // Ocultar pantalla de inicio y mostrar el juego.
-            document.getElementById('startScreen').style.display = 'none';
-            document.getElementById('fondo').style.display = 'flex';
-            update(locations[1]);
-            text.style.display='flex';
-           // document.getElementById('city').style.display = 'flex';
-            document.getElementById('stats').style.display = 'flex';
-            document.getElementById('controls').style.display= 'flex';
-        } else {
-            alert('Por favor, ingresa tu nombre antes de comenzar el juego.');
-        }
-    });
-  }
-
-  document.addEventListener('DOMContentLoaded', inicio());
