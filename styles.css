@@ -157,65 +157,15 @@ body img {
 
   #monsterStats{
     display: none;
-  }
-¡
+      border: 1px solid #0a0a23;
+      padding: 5px;
+      color: #ffffff;
+      background-color: #c70d0d;
+    }
   
-  #player {
-    width: 100px; /* Ancho fijo */
-    height: 100px; /* Altura fija */
-    position: absolute;
-    bottom: 0;
-    left: 30%; /* Centrar horizontalmente */
-    transform: translateX(-50%);
-    z-index: 2; /* Asegurar que esté por encima de otros elementos */
-  }
+
   
-  #slime {
-    position: absolute; /* Cambiado de relative a absolute */
-    width: 10vw; /* Ancho al 100% de la ventana del navegador */
-    height: 10vh; /* Altura al 100% de la ventana del navegador */
-    right: 40%; /* Centrar horizontalmente */
-    bottom: 0; /* Alinear en la parte inferior */
-  }
-  
-  #slimeHealthBar {
-    position: absolute; /* Cambiado de relative a absolute */
-    bottom: 0;
-    left: 0;
-    height: 12px; /* Altura de la barra de vida */
-    width: 100%; /* Ancho total */
-    background-color: #00FF00; /* Color de la barra de vida (verde) */
-  }
-  
-  .health-bar {
-    position: absolute; /* Cambiado de relative a absolute */
-    bottom: 0;
-    height: 12px; /* Altura de la barra de vida */
-    width: 100%; /* Ancho total */
-    background-color: #00FF00; /* Color de la barra de vida (verde) */
-  }
-  
-  .slime-fight-player,
-  .slime-fight-slime {
-    bottom: 0;
-  }
-  
-  .slime-fight-player img,
-  .slime-fight-slime img {
-    width: 80px; /* Ajusta el tamaño del personaje y del slime */
-  }
-  
-  .health-bar {
-    position: absolute;
-    top: 0;
-    height: 12px; /* Altura de la barra de vida */
-    width: 100%; /* Ancho total */
-    
-  }
-  
-  .health-bar {
-    background-color: #00FF00; /* Color de la barra de vida (verde) */
-  }
+
   
   #controls,
   #stats,

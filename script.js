@@ -4,15 +4,15 @@ let gold = 50;
 let currentWeapon = 0;
 let fighting;
 let monsterHealth;
-let inventory = ["stick"];
+let inventory = ["Palo"];
 
 const fondoimg = document.getElementById('fondoimg');
 const fondo = document.getElementById('fondo');
 const body = document.querySelector('body');
-const button1 = document.querySelector('#button1');
-const button2 = document.querySelector("#button2");
-const button3 = document.querySelector("#button3");
-const text = document.querySelector("#text");
+const button1 = document.getElementById('button1');
+const button2 = document.getElementById('button2');
+const button3 = document.getElementById('button3');
+const text = document.getElementById('text');
 const xpText = document.querySelector("#xpText");
 const healthText = document.querySelector("#healthText");
 const goldText = document.querySelector("#goldText");
@@ -20,10 +20,10 @@ const monsterStats = document.querySelector("#monsterStats");
 const monsterName = document.querySelector("#monsterName");
 const monsterHealthText = document.querySelector("#monsterHealth");
 const weapons = [
-  { name: 'stick', power: 5 },
-  { name: 'dagger', power: 30 },
-  { name: 'claw hammer', power: 50 },
-  { name: 'sword', power: 100 }
+  { name: 'palo', power: 5 },
+  { name: 'Daga', power: 30 },
+  { name: 'Martillo Pesado', power: 50 },
+  { name: 'Espada', power: 100 }
 ];
 const monsters = [
   {
@@ -32,7 +32,7 @@ const monsters = [
     health: 15
   },
   {
-    name: "fanged beast",
+    name: "bestia",
     level: 8,
     health: 60
   },
@@ -61,53 +61,62 @@ const locations = [
   },
   {
     name: "Store",
-    "button text": ["Comprar 10 de vida (10 de oro)", "Comprar un arma (30 de oro)", "Volver"],
+    "button text": ["Poción de vida (10 de oro)", "Arma nueva(30 de oro)", "Volver"],
     "button functions": [buyHealth, buyWeapon, goTown],
     "button position top": ["50%","60%","75%"],
     "button position left": ["75%","25%","30%"],
     text: "Entras a una tienda por suministros.",
-    img: "https://cdn.openart.ai/uploads/image_cK-y_XFZ_1709698674982_512.webp"
+    img: "img/Tienda.jpg"
   },
   {
     name: "Bosque",
-    "button text": ["Pelear al slime", "Pedir clemencia a diosito", "Huir"],
-    "button functions": [fightSlime, goTown, goTown],
-    text: "Encontraste un slime, que haras?",
-    img: "https://cdn.openart.ai/uploads/image_2Arz5q0A_1709750890494_raw.jpg"
+    "button text": ["Pelear al slime", "Esconderse detras de un arbol", "Huir"],
+    "button functions": [fightSlime, goThree, goTown],
+    "button position top": ["55%","30%","74%"],
+    "button position left": ["80%","64%","40%"],
+    text: "Encontraste un grupo de slime, que haras?",
+    img: "img/Bosque.jpg"
   },
   {
     name: "Slime fight",
     "button text": ["Atacar", "Esquivar", "Huir"],
-    "button functions": [attackSlime, dodgeSlime, goTown],
+    "button functions": [attack, dodge, goTown],
+    "button position top": ["75%","75%","75%"],
+    "button position left": ["35%","40%","45%"],
     text: "Blurp, Blurp",
-    img: "https://cdn.openart.ai/uploads/image_2Arz5q0A_1709750890494_raw.jpg"
+    img: "img/Bosque.jpg"
   },
  
   {
     name: "Cave",
-    "button text": ["Un slime", "Bestia ", "Huir"],
-    "button functions": [fightSlime, fightBeast, goTown],
+    "button text": ["Rezar y lanzarse a la pelea", "Pelear a la Bestia ", "Huir"],
+    "button functions": [fightBeast, fightBeast, goTown],
+    "button position top": ["33%","33%","80%"],
+    "button position left": ["45%","33%","45%"],
     text: "You enter the cave. You see some monsters.",
-    img: "https://cdn.openart.ai/uploads/image_V5b__ZjY_1709749892782_raw.jpg"
+    img: "img/Cueva.jpg"
   
   },
   {
-    name: "fight",
-    "button text": ["Attack", "Dodge", "Run"],
+    name: "fight bestia",
+    "button text": ["Atacar", "Esquivar", "Huir"],
     "button functions": [attack, dodge, goTown],
-    text: "You are fighting a monster."
+    text: "La bestia era enorme",
+    img : "img/Bestia pelea.jpg"
   },
   {
     name: "kill monster",
-    "button text": ["Go to town square", "Go to town square", "Go to town square"],
-    "button functions": [goTown, goTown, goTown],
-    text: 'The monster screams "Arg!" as it dies. You gain experience points and find gold.'
+    "button text": "Volver a casa",
+    "button functions": [goTown],
+    text: 'El monstruo cae y obtienes experiencia y oro.',
+    img :"https://sm.ign.com/t/ign_latam/screenshot/default/vegeta-vegeta_481w.1280.jpg"
   },
   {
     name: "lose",
-    "button text": ["REPLAY?", "REPLAY?", "REPLAY?"],
-    "button functions": [restart, restart, restart],
-    text: "You die. &#x2620;"
+    "button text": ["Jugar de nuevo?"],
+    "button functions": [restart],
+    text: "Has muerto. &#x2620;",
+    img: "img/muerto.jpg"
   },
   { 
     name: "win", 
@@ -123,29 +132,67 @@ const locations = [
   },
   {
     name: "Montañas",
-    "button text": ["Entrar a la cueva", "Pasar la noche y volver al otro dia", "Volver a la ciudad llorando"],
+    "button text": ["Entrar a la cueva", "Volver a la ciudad","Pasar la noche y volver a la ciudad"],
     "button functions": [goCave, goTown, goTown],
+    "button position top": ["80%","50%","60%"],
+    "button position left": ["40%","60%","80%"],
     text: "La montaña estaba vacia y el frio congelaba mis",
-    img: "https://cdn.openart.ai/uploads/image__bTHPcwg_1709702850630_raw.jpg"
+    img: "img/montaña.jpg"
+  },
+  {
+    name: "Escondido del slime",
+    "button text": ["Levantarse e irse"],
+    "button functions": [goTown],
+    "button position top": "40%",
+    "button position left": "0%",
+    text: "Como no ataque al slime este solo se subio a un arbol y me observaba",
+    img: "img/Slime escondido.jpg"
   },
 ];
 
 // initialize buttons
 button1.onclick = goStore;
 button2.onclick = goForest;
-button3.onclick = fightDragon;
+button3.onclick = goMountain;
 
 function update(location) {
-  fondoimg.setAttribute("src",location.img); //cambia la imagen del fondo en el div fondo
-  //fondo.style.backgroundImage = location.img;
-  //fondo.style.backgroundSize = "cover"; // Ajusta la imagen para que cubra completamente el contenedor
-  //fondo.style.backgroundPosition = "center";
-  button1.innerText = location["button text"][0];
-  button2.innerText = location["button text"][1];
-  button3.innerText = location["button text"][2];
-  button1.onclick = location["button functions"][0];
-  button2.onclick = location["button functions"][1];
-  button3.onclick = location["button functions"][2];
+  fondoimg.setAttribute("src", location.img); // Cambia la imagen del fondo en el div fondo
+  
+  // Oculta todos los botones
+  button1.style.display = 'none';
+  button2.style.display = 'none';
+  button3.style.display = 'none';
+
+  // Verifica si estamos en "Escondido del slime"
+  if (location.name === "Escondido del slime") {
+    // Muestra solo el botón de "Huir"
+    button3.innerText = location["button text"][0]; // Cambiado de 2 a 0 ya que solo hay un botón en esta ubicación
+    button3.onclick = location["button functions"][0]; // Cambiado de 2 a 0 ya que solo hay una función para este botón
+    button3.style.display = 'block';
+  } else if (location.name === "Montañas") {
+    // Muestra solo 2 botones 
+    button1.innerText = location["button text"][0]; 
+    button1.onclick = location["button functions"][0]; 
+    button1.style.display = 'block';
+    button2.innerText = location["button text"][1]; 
+    button2.onclick = location["button functions"][1]; 
+    button2.style.display = 'block';
+  } else if (location.name === "Matar") {
+      button3.innerText = location["button text"][0];
+      button3.onclick = location["button functions"][0];
+      button3.style.display = 'block';
+  } else {
+    // Si no estamos escondidos detrás del árbol o en la montañita, muestra los botones normales
+    button1.innerText = location["button text"][0];
+    button1.onclick = location["button functions"][0];
+    button1.style.display = 'block';
+    button2.innerText = location["button text"][1];
+    button2.onclick = location["button functions"][1];
+    button2.style.display = 'block';
+    button3.innerText = location["button text"][2]; // Agregado
+    button3.onclick = location["button functions"][2]; // Agregado
+    button3.style.display = 'block'; // Agregado
+  }
 
   button1.style.top = location["button position top"][0];
   button2.style.top = location["button position top"][1];
@@ -153,10 +200,10 @@ function update(location) {
   button1.style.left = location["button position left"][0];
   button2.style.left = location["button position left"][1];
   button3.style.left = location["button position left"][2];
-
-  // text.innerHTML = location.text; // Rodri: momentaneamente lo saco para que veas como queda el fondo del texto, tengo que ver como hacer para que cuando se escriba el texto se ponga sobre eso, porque me lo elimina
 }
-  
+  // text.innerHTML = location.text; // Rodri: momentaneamente lo saco para que veas como queda el fondo del texto, tengo que ver como hacer para que cuando se escriba el texto se ponga sobre eso, porque me lo elimina
+
+
 
 
 function goTown() {
@@ -171,6 +218,10 @@ function goMountain() {
   update(locations[11]);
 }
 
+function goThree() {
+  update(locations[12]);
+}
+
 function goCave() {
   update(locations[5]);
 }
@@ -182,7 +233,7 @@ function buyHealth() {
     goldText.innerText = gold;
     healthText.innerText = health;
   } else {
-    text.innerText = "You do not have enough gold to buy health.";
+    text.innerText = "No tienes oro para comprar esta pocion.";
   }
 }
 
@@ -193,15 +244,15 @@ function buyWeapon() {
       currentWeapon++;
       goldText.innerText = gold;
       let newWeapon = weapons[currentWeapon].name;
-      text.innerText = "You now have a " + newWeapon + ".";
+      text.innerText = "Ahora tienes una " + newWeapon + ".";
       inventory.push(newWeapon);
-      text.innerText += " In your inventory you have: " + inventory;
+      text.innerText += " En tu inventario tienes: " + inventory;
     } else {
-      text.innerText = "You do not have enough gold to buy a weapon.";
+      text.innerText = "No tienes oro para comprar un arma.";
     }
   } else {
-    text.innerText = "You already have the most powerful weapon!";
-    button2.innerText = "Sell weapon for 15 gold";
+    text.innerText = "Ya tienes el mejor equipamiento";
+    button2.innerText = "Vender arma 15 de oro";
     button2.onclick = sellWeapon;
   }
 }
@@ -211,31 +262,22 @@ function sellWeapon() {
     gold += 15;
     goldText.innerText = gold;
     let currentWeapon = inventory.shift();
-    text.innerText = "You sold a " + currentWeapon + ".";
-    text.innerText += " In your inventory you have: " + inventory;
+    text.innerText = "Has vendido tu " + currentWeapon + ".";
+    text.innerText += " En tu inventario tienes : " + inventory;
   } else {
-    text.innerText = "Don't sell your only weapon!";
+    text.innerText = "No vendas tu unica arma!";
   }
 }
 
 function fightSlime() {
-    update(locations[4]); // Corregido el índice para apuntar al escenario slimeFight
-  }
-
-
-function attackSlime() {
-  text.innerText = "ej: Atacaste al slime !";
-  // Lógica de ataque al slime
-}
-
-function dodgeSlime() {
-  text.innerText = "ej: Esquivaste al slime !";
-  // Lógica de esquivar al slime
+  fighting = 0; // Inicializa fighting en 0 cuando peleas con el slime
+  update(locations[4]); // Esta línea actualiza la ubicación a la pelea con el slime
 }
 
 function fightBeast() {
   fighting = 1;
   goFight();
+  update(locations[6]);
 }
 
 function fightDragon() {
@@ -256,13 +298,16 @@ function goFight() {
 }
 
 function attack() {
-  text.innerText = "The " + monsters[fighting].name + " attacks.";
-  text.innerText += " You attack it with your " + weapons[currentWeapon].name + ".";
+  text.innerText = "El " + monsters[fighting].name + " ataca.";
+  text.innerText += " Lo atacas con tu " + weapons[currentWeapon].name + ".";
   health -= getMonsterAttackValue(monsters[fighting].level);
   if (isMonsterHit()) {
-    monsterHealth -= weapons[currentWeapon].power + Math.floor(Math.random() * xp) + 1;    
+    // Calcula el daño infligido al monstruo
+    let playerDamage = weapons[currentWeapon].power + Math.floor(Math.random() * xp) + 1;
+    text.innerText += " ¡Has infligido " + playerDamage + " de daño!";
+    monsterHealth -= playerDamage;
   } else {
-    text.innerText += " You miss.";
+    text.innerText += " Has fallado.";
   }
   healthText.innerText = health;
   monsterHealthText.innerText = monsterHealth;
@@ -272,11 +317,12 @@ function attack() {
     if (fighting === 2) {
       winGame();
     } else {
+      console.log("Monstruo derrotado"); // Verifica si esta condición se cumple correctamente
       defeatMonster();
     }
   }
   if (Math.random() <= .1 && inventory.length !== 1) {
-    text.innerText += " Your " + inventory.pop() + " breaks.";
+    text.innerText += " Tu " + inventory.pop() + " se ha roto.";
     currentWeapon--;
   }
 }
@@ -292,7 +338,7 @@ function isMonsterHit() {
 }
 
 function dodge() {
-  text.innerText = "You dodge the attack from the " + monsters[fighting].name;
+  text.innerText = "Has esquivado el ataque de " + monsters[fighting].name;
 }
 
 function defeatMonster() {
@@ -300,7 +346,7 @@ function defeatMonster() {
   xp += monsters[fighting].level;
   goldText.innerText = gold;
   xpText.innerText = xp;
-  update(locations[4]);
+  update(locations[7]);
 }
 
 function lose() {
@@ -316,7 +362,7 @@ function restart() {
   health = 100;
   gold = 50;
   currentWeapon = 0;
-  inventory = ["stick"];
+  inventory = ["Palo"];
   goldText.innerText = gold;
   healthText.innerText = health;
   xpText.innerText = xp;
@@ -340,22 +386,29 @@ function pick(guess) {
   while (numbers.length < 10) {
     numbers.push(Math.floor(Math.random() * 11));
   }
-  text.innerText = "You picked " + guess + ". Here are the random numbers:\n";
+  text.innerText = "Elegiste " + guess + ". Aquí están los números aleatorios:\n";
   for (let i = 0; i < 10; i++) {
     text.innerText += numbers[i] + "\n";
   }
   if (numbers.includes(guess)) {
-    text.innerText += "Right! You win 20 gold!";
+    text.innerText += "¡Correcto! ¡Ganas 20 de oro!";
     gold += 20;
     goldText.innerText = gold;
   } else {
-    text.innerText += "Wrong! You lose 10 health!";
+    text.innerText += "¡Incorrecto! ¡Pierdes 10 de salud!";
     health -= 10;
     healthText.innerText = health;
     if (health <= 0) {
       lose();
     }
   }
+}
+
+if (location["button text"] && location["button text"].length > 0) {
+  button1.innerText = location["button text"][0];
+}
+if (location["button functions"] && location["button functions"].length > 0) {
+  button1.onclick = location["button functions"][0];
 }
 
 function inicio(){
