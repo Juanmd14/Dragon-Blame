@@ -129,9 +129,10 @@ body img {
   #text{
     display: none;
     position: absolute;
-    width: 90%;
+    width: 65%;
     height: 10%;
     bottom: 0;
+    left: 15%;
     opacity: 0.5;
     border-radius: 30px;
     background-color: #e7c967;
@@ -147,17 +148,6 @@ body img {
     display: none;
   }
 
-  #monsterStats{
-    display: none;
-      border: 1px solid #0a0a23;
-      padding: 5px;
-      color: #ffffff;
-      background-color: #c70d0d;
-    }
-  
-
-  
-
   
   #controls,
   #stats,
@@ -170,14 +160,11 @@ body img {
   #controls {
     text-align: center; /* Alinea los botones al centro */
   }
-  .stat {
-    margin-bottom: 5px;
-  }
 
   #marcopj{
     display: none;
     position: absolute;
-    bottom: 25px;
+    bottom: 10px;
     left: 10px;
   }
   #marco{
@@ -188,7 +175,7 @@ body img {
     height: 100px;
     border-radius: 100%;
     z-index: 2;
-    bottom: 70px;
+    bottom: -3%;
     
   }
   #marco img{
@@ -202,15 +189,15 @@ body img {
     position: absolute;
     z-index: 1;
     left: 20px;
-    bottom: 83px;
+    bottom: 11px;
     background-color: #b58f04;
-    width: 200px;
-    height: 70px;
+    width: 250px;
+    height: 80px;
     border-radius: 10px;
   }
 
   #stats {
-    display: none;
+    display: flex;
     flex-direction: column;
     position: relative;
     font-family: Arial, Helvetica, sans-serif, cursive;
@@ -238,19 +225,102 @@ body img {
       flex-grow: 1;
       font-size: 90%;
       display: flex;
-      justify-content: center; /* Centra horizontalmente el contenido */
-      align-items: center; /* Centra verticalmente el contenido */
-  }
-
+      justify-content: center; 
+      align-items: center; 
+    }
   #healthText {
     color: white; /* Cambia el color del texto a blanco */
     font-size: 14px; /* Cambia el tamaño de la fuente a 14px */
     font-weight: bold; /* Hace que el texto sea negrita */
 }
-    
 
-  #stat{
+#marcomonstruo {
+  display: none;
+  position: absolute;
+  bottom: 10px;
+  right: 19%;
+}
+
+#marcomonstruo2 {
+  display: none;
+  position: absolute;
+  background-color: red;
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  z-index: 2;
+  bottom: -3%;
+}
+
+#marcomonstruo img {
+  margin: auto;
+  width: 90%;
+  height: 90%;
+  border-radius: 100%;
+}
+
+  #monsterStats {
+     display: none; 
+    position: absolute;
+    bottom: 8px;
+    left: 70px;
+    width: 225px;
+    height: 80px;
+    background-color: red;
+    border: 1px solid black;
+    border-radius: 5px;
+    z-index: 1;
+  }
+
+  
+  #stats2 {
     display: flex;
+    flex-direction: column;
+    position: relative;
+    font-family: Arial, Helvetica, sans-serif, cursive;
+    justify-content: space-around;
+    width: 55%;
+    margin: 0 auto;
+    border-radius: 10px;
+    color: #0a0a23;
+  }
+  
+  #stats2 .stat {
+    display: flex;
+    align-items: center;
+  }
+  
+  #stats2 .stat .stat-text {
+    margin-right: 10px;
+  }
+  
+  #barravida2 {
+    height: 10px;
+    background-color: white;
+    border-radius: 50px;
+    border: 1px solid black;
+    flex-grow: 1;
+    font-size: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #monsterhealthText {
+    color: rgb(117, 14, 14);
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
+  #monsterName,
+  #monsterHealth {
+    color: black;
+    font-size: 14px;
+    font-weight: bold;
+    top: 10%;
+    right: 20%;
+   
+  
   }
   
   

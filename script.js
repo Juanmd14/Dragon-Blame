@@ -29,17 +29,20 @@ const monsters = [
   {
     name: "slime",
     level: 2,
-    health: 15
+    health: 15,
+    image: "img/Slime.jpg"
   },
   {
     name: "bestia",
     level: 8,
-    health: 60
+    health: 60,
+    image: "img/Bestia.jpg"
   },
   {
     name: "dragon",
     level: 20,
-    health: 300
+    health: 300,
+    image: "img/Dragon.jpg"
   }
 ]
 const locations = [
@@ -261,10 +264,21 @@ function update(location) {
   button1.style.left = location["button position left"][0];
   button2.style.left = location["button position left"][1];
   button3.style.left = location["button position left"][2];
-}
-  // text.innerHTML = location.text; // Rodri: momentaneamente lo saco para que veas como queda el fondo del texto, tengo que ver como hacer para que cuando se escriba el texto se ponga sobre eso, porque me lo elimina
 
-//ESPERO QUE ACOMODES EL TEXT 
+  // Oculta el marco del monstruo al actualizar la ubicación
+  const marcoMonstruo = document.getElementById('marcomonstruo2');
+  if (marcoMonstruo) {
+    marcoMonstruo.style.display = 'none';
+  } else {
+    console.error("El elemento 'marcomonstruo2' no existe en el DOM.");
+  }
+  const statsMonstruo = document.getElementById('monsterStats');
+  if (statsMonstruo) {
+    statsMonstruo.style.display = 'none';
+  } else {
+   console.error("El elemento 'statsmonstruo' no existe en el DOM.");
+  }
+}
 
 
 function goTown() {
@@ -340,20 +354,39 @@ function sellWeapon() {
 
 function fightSlime() {
   fighting = 0; // Inicializa fighting en 0 cuando peleas con el slime
-  goFight(); //manda a la pelea
-  update(locations[4]); //  actualiza la ubicación a la pelea con el slime
+  goFight(); // Manda a la pelea
+  update(locations[4]); // Actualiza la ubicación a la pelea con el slime
+  
+  // Verifica si el elemento existe antes de intentar acceder a su estilo
+  const marcoMonstruo = document.getElementById('marcomonstruo2');
+  if (marcoMonstruo) {
+    marcoMonstruo.style.display = 'flex'; // Muestra el marco del personaje
+  } else {
+    console.error("El elemento 'marcomonstruo2' no existe en el DOM.");
+  }
+  
+  const statsMonstruo = document.getElementById('monsterStats');
+  if (statsMonstruo) {
+    statsMonstruo.style.display = 'flex';
+  } else {
+    console.error("El elemento 'statsmonstruo' no existe en el DOM.");
+  }
 }
 
-function fightBeast() { //lo mismo pero con la bestia
+function fightBeast() {
   fighting = 1;
   goFight();
   update(locations[6]);
+  document.getElementById('marcomonstruo2').style.display = 'flex'; 
+  document.getElementById('statsMonstruo').style.display = 'flex'; // Muestra el marco del personaje
 }
 
-function fightDragon() { //dragon fight
+function fightDragon() {
   fighting = 2;
   goFight();
   update(locations[14]);
+  document.getElementById('marcomonstruo2').style.display = 'flex';
+  document.getElementById('statsMonstruo').style.display = 'flex';  // Muestra el marco del personaje
 }
 
 function goForest() {
@@ -363,16 +396,34 @@ function goForest() {
 function goFight() {
   monsterHealth = monsters[fighting].health;
   monsterHealthText.innerText = monsterHealth; // Agrega esta línea para actualizar el texto de la salud del monstruo en la interfaz
-  console.log("Vida del monstruo al entrar a la pelea:", monsterHealth);
-  update(locations[6]);
   
-  monsterStats.style.display = "block";
-  monsterName.innerText = monsters[fighting].name;
-  monsterHealthText.innerText = monsterHealth;
+  // Obtén el elemento de la imagen del monstruo
+  const monsterImage = document.querySelector("#marcomonstruo2 img");
+  
+  // Actualiza el atributo src de la imagen del monstruo con la ruta de la imagen correspondiente al monstruo actual
+  monsterImage.src = monsters[fighting].image;
+
+  // Muestra el marco del monstruo
+  const statsMonstruo = document.getElementById('monsterStats');
+  const marcoMonstruo = document.getElementById('marcomonstruo2');
+  if (marcoMonstruo && statsMonstruo) {
+    marcoMonstruo.style.display = 'flex';
+  } else {
+    console.error("El elemento no existe en el DOM.");
+  }
+}
+document.getElementById('marcomonstruo').style.display = 'block';
+document.getElementById('monsterStats').style.display = 'block';
+
+function endFight() {
+  // Ocultar el marco del monstruo
+  document.getElementById('marcomonstruo').style.display = 'none';
+  document.getElementById('monsterStats').style.display = 'none';
+  
 }
 
 function attack() {
-  text.innerText = "El " + monsters[fighting].name + " ataca.";
+  text.innerText = monsters[fighting].name + " ataca.";
   text.innerText += " Lo atacas con tu " + weapons[currentWeapon].name + ".";
   health -= getMonsterAttackValue(monsters[fighting].level);
   if (isMonsterHit()) {
@@ -461,56 +512,27 @@ function winGame() {
 }
 
 function restart() {
-  xp = 0;
-  health = 100;
-  gold = 50;
-  currentWeapon = 0;
-  inventory = ["Palo"];
-  goldText.innerText = gold;
-  healthText.innerText = health;
-  xpText.innerText = xp;
-  goTown();
-}
-
-function easterEgg() {
-  update(locations[10]);
+  location.reload();
 }
 
 function pickTwo() {
-  pick(2);
+  let randomNumber = Math.floor(Math.random() * 10);
+  if (randomNumber === 2) {
+    text.innerText = "¡Has ganado! La recompensa es de 100 monedas de oro.";
+    gold += 100;
+    goldText.innerText = gold;
+  } else {
+    text.innerText = "Número incorrecto. Inténtalo de nuevo.";
+  }
 }
 
 function pickEight() {
-  pick(8);
-}
-
-function pick(guess) {
-  const numbers = [];
-  while (numbers.length < 10) {
-    numbers.push(Math.floor(Math.random() * 11));
-  }
-  text.innerText = "Elegiste " + guess + ". Aquí están los números aleatorios:\n";
-  for (let i = 0; i < 10; i++) {
-    text.innerText += numbers[i] + "\n";
-  }
-  if (numbers.includes(guess)) {
-    text.innerText += "¡Correcto! ¡Ganas 20 de oro!";
-    gold += 20;
+  let randomNumber = Math.floor(Math.random() * 10);
+  if (randomNumber === 8) {
+    text.innerText = "¡Has ganado! La recompensa es de 200 monedas de oro.";
+    gold += 200;
     goldText.innerText = gold;
   } else {
-    text.innerText += "¡Incorrecto! ¡Pierdes 10 de salud!";
-    health -= 10;
-    healthText.innerText = health;
-    if (health <= 0) {
-      lose();
-    }
+    text.innerText = "Número incorrecto. Inténtalo de nuevo.";
   }
 }
-
-if (location["button text"] && location["button text"].length > 0) {
-  button1.innerText = location["button text"][0];
-}
-if (location["button functions"] && location["button functions"].length > 0) {
-  button1.onclick = location["button functions"][0];
-}
-
