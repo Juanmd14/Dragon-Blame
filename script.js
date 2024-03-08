@@ -65,7 +65,7 @@ const locations = [
     "button functions": [buyHealth, buyWeapon, goTown],
     "button position top": ["50%","60%","75%"],
     "button position left": ["75%","25%","30%"],
-    text: "Entras a una tienda por suministros.",
+    text: "Entras a una tienda por suministros. altos pobres",
     img: "img/Tienda.jpg"
   },
   {
