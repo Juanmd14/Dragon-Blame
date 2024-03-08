@@ -203,6 +203,7 @@ function inicio(){
           document.getElementById('fondo').style.display = 'flex';
           update(locations[1]);
           text.style.display='flex';
+          document.getElementById('marcopj').style.display = 'flex';
           document.getElementById('stats').style.display = 'flex';
           document.getElementById('controls').style.display= 'flex';
       } else {
