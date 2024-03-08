@@ -206,6 +206,7 @@ function inicio(){
           document.getElementById('marcopj').style.display = 'flex';
           document.getElementById('stats').style.display = 'flex';
           document.getElementById('controls').style.display= 'flex';
+          updateHealthBar();
       } else {
           alert('Por favor, ingresa tu nombre antes de comenzar el juego.');
       }
@@ -405,6 +406,7 @@ function attack() {
   }
 }
 
+
 function getMonsterAttackValue(level) {
   const hit = (level * 5) - (Math.floor(Math.random() * xp));
   console.log(hit);
@@ -417,6 +419,29 @@ function isMonsterHit() {
 
 function dodge() {
   text.innerText = "Has esquivado el ataque de " + monsters[fighting].name;
+}
+
+function updateHealthBar() {
+  const maxHealth = 100; // Valor máximo de vida del personaje
+  const healthPercentage = (health / maxHealth) * 100; // Calcula el porcentaje de vida actual
+  const barraVida = document.getElementById('barravida');
+  const healthText = document.getElementById('healthText');
+
+  // Si el personaje está en una pelea (fighting es verdadero), actualiza la barra de vida
+  // de acuerdo a la salud del personaje, de lo contrario, la barra de vida permanece sin cambios.
+  if (fighting) {
+    barraVida.style.width = healthPercentage + '%'; // Establece el ancho de la barra de vida según el porcentaje de vida actual
+    healthText.innerText = health; // Actualiza el texto de la salud
+  } else {
+    // Si no está en pelea, se asume que el personaje está comprando una poción,
+    // por lo que la barra de vida se incrementa en 10 puntos.
+    health += 10;
+    if (health > maxHealth) {
+      health = maxHealth; // Limita la salud al valor máximo
+    }
+    barraVida.style.width = ((health / maxHealth) * 100) + '%'; // Actualiza el ancho de la barra de vida
+    healthText.innerText = health; // Actualiza el texto de la salud
+  }
 }
 
 function defeatMonster() {

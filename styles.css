@@ -171,7 +171,7 @@ body img {
     text-align: center; /* Alinea los botones al centro */
   }
   .stat {
-    padding-right: 10px;
+    margin-bottom: 5px;
   }
 
   #marcopj{
@@ -213,19 +213,42 @@ body img {
     display: none;
     flex-direction: column;
     position: relative;
-    font-family: "UnifrakturCook", cursive;
+    font-family: Arial, Helvetica, sans-serif, cursive;
     justify-content: space-around;
     width: 55%;
     margin: auto 10px auto auto;
     border-radius: 10px;
     color: #0a0a23;
   }
-  #barravida{
-    height: 10px;
-    background-color: red;
-    border-radius: 50px;
-    border: 1px solid black;
+    
+    #statsmarco .stat {
+      display: flex;
+      align-items: center;
+    }
+    
+    #statsmarco .stat .stat-text {
+      margin-right: 10px;
+    }
+  
+    #barravida {
+      height: 12px;
+      background-color: red;
+      border-radius: 50px;
+      border: 1px solid black;
+      flex-grow: 1;
+      font-size: 90%;
+      display: flex;
+      justify-content: center; /* Centra horizontalmente el contenido */
+      align-items: center; /* Centra verticalmente el contenido */
   }
+
+  #healthText {
+    color: white; /* Cambia el color del texto a blanco */
+    font-size: 14px; /* Cambia el tamaño de la fuente a 14px */
+    font-weight: bold; /* Hace que el texto sea negrita */
+}
+    
+
   #stat{
     display: flex;
   }
