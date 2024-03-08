@@ -54,8 +54,8 @@ const locations = [
     name: "Pueblo A",
     "button text": ["Entrar a la tienda", "Ir al bosque", "Seguir camino hacia las montañas"],
     "button functions": [goStore, goForest, goMountain],
-    "button position top": ["40%","35%","30%"],
-    "button position left": ["13%","70%","18%"],
+    "button position top": ["40%","35%","20%"],
+    "button position left": ["13%","77%","28%"],
     text: "Llegas al pueblo A, no hay mucho, pero divisas una pequeña tienda, un cartel que señala la dirección hacia el bosque, y otro que señala la dirección hacia el pueblo B",
     img: "https://img.pikbest.com/origin/09/32/81/75fpIkbEsTygS.jpg!sw800"
   },
@@ -109,11 +109,11 @@ const locations = [
   {
     name: "kill monster",
     "button text": ["Volver a casa","Volver a casa", "Volver a casa"],
-    "button functions": [goTown, goTown, goTown],
-    "button position top": ["75%","75%","75%"],
-    "button position left": ["35%","40%","45%"],
+    "button functions": [goTown],
+    "button position top": ["20%"],
+    "button position left": ["80%"],
     text: "El monstruo cae y obtienes experiencia y oro.",
-    img :"https://sm.ign.com/t/ign_latam/screenshot/default/vegeta-vegeta_481w.1280.jpg"
+    img :"img/Defeat monster.jpg"
   },
   {
     name: "lose",
@@ -140,8 +140,8 @@ const locations = [
     name: "Montañas",
     "button text": ["Entrar a la cueva", "Volver a la ciudad","Ir a la ciudad que sigue por el camino"],
     "button functions": [goCave, goTown, goTown2],
-    "button position top": ["80%","50%","60%"],
-    "button position left": ["40%","60%","80%"],
+    "button position top": ["80%","50%","55%"],
+    "button position left": ["40%","60%","20%"],
     text: "La montaña estaba vacia y el frio congelaba mis",
     img: "img/montaña.jpg"
   },
@@ -156,21 +156,30 @@ const locations = [
   },
   {
     name: "Pueblo B",
-    "button text": ["Entrar a la tienda", "Dragon?", "Seguir camino hacia las montañas"],
-    "button functions": [goStore, fightDragon, goMountain],
-    "button position top": ["40%","35%","30%"],
-    "button position left": ["13%","70%","18%"],
+    "button text": ["Entrar a la tienda", "Subir a lo alto de la montaña", "Volver"],
+    "button functions": [goStore2, fightDragon, goMountain],
+    "button position top": ["40%","30%","75%"],
+    "button position left": ["13%","35%","30%"],
     text: "Llegas al pueblo A, no hay mucho, pero divisas una pequeña tienda, un cartel que señala la dirección hacia el bosque, y otro que señala la dirección hacia el pueblo B",
-    img: "img/Ciudad b v1.jpg"
+    img: "img/ciudad B.jpg"
   },
   {
     name: "Dragon",
-    "button text": ["Entrar a la tienda", "Dragon?", "Seguir camino hacia las montañas"],
-    "button functions": [goStore, fightDragon, goMountain],
-    "button position top": ["40%","35%","30%"],
-    "button position left": ["13%","70%","18%"],
-    text: "Llegas al pueblo A, no hay mucho, pero divisas una pequeña tienda, un cartel que señala la dirección hacia el bosque, y otro que señala la dirección hacia el pueblo B",
-    img: "img/Ciudad b v1.jpg"
+    "button text": ["Atacar", "Esquivar", "Huir"],
+    "button functions": [attack, dodge, goTown2],
+    "button position top": ["75%","75%","75%"],
+    "button position left": ["35%","40%","55%"],
+    text: "Dragon",
+    img: "img/Dragon.jpg"
+  },
+  {
+    name: "Store2",
+    "button text": ["Poción de vida", "Arma nueva", "Volver"],
+    "button functions": [buyHealth, buyWeapon, goTown],
+    "button position top": ["35%","28%","75%"],
+    "button position left": ["40%","20%","60%"],
+    text: "Entras a una tienda por suministros.",
+    img: "img/Store2.jpg"
   },
 ];
 
@@ -218,7 +227,7 @@ function update(location) {
   button3.style.display = 'none';
 
   // Verifica si estamos en "Escondido del slime"
-  if (location.name === "Escondido del slime" ||  location.name === "lose") {  // aca agregas locations si queres que se muestre 1 solo boton
+  if (location.name === "Escondido del slime" ||  location.name === "lose"  || location.name === "kill monster") {  // aca agregas locations si queres que se muestre 1 solo boton
     // Muestra solo el botón de "Huir"
     button1.innerText = location["button text"][0]; // Cambiado de 2 a 0 ya que solo hay un boton
     button1.onclick = location["button functions"][0]; // Cambiado de 2 a 0 ya que solo hay una funcion
@@ -280,6 +289,10 @@ function goTown2() {
   update(locations[13]);
 }
 
+function goStore2() {
+  update(locations[15]);
+}
+
 function buyHealth() {
   if (gold >= 10) {
     gold -= 10;
@@ -338,7 +351,7 @@ function fightBeast() { //lo mismo pero con la bestia
 function fightDragon() { //dragon fight
   fighting = 2;
   goFight();
-  update(locations[13]);
+  update(locations[14]);
 }
 
 function goForest() {
