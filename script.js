@@ -27,19 +27,19 @@ const weapons = [
 ];
 const monsters = [
   {
-    name: "slime",
+    name: "Slime",
     level: 2,
     health: 15,
     image: "img/Slime.jpg"
   },
   {
-    name: "bestia",
+    name: "Bestia",
     level: 8,
     health: 60,
     image: "img/Bestia.jpg"
   },
   {
-    name: "dragon",
+    name: "Dragon",
     level: 20,
     health: 300,
     image: "img/Dragon.jpg"
@@ -73,7 +73,7 @@ const locations = [
   },
   {
     name: "Bosque",
-    "button text": ["Pelear al slime", "Esconderse detras de un arbol", "Huir"],
+    "button text": ["Pelear al Slime", "Esconderse detras de un arbol", "Huir"],
     "button functions": [fightSlime, goThree, goTown],
     "button position top": ["55%","30%","74%"],
     "button position left": ["10%","74%","70%"],
@@ -111,7 +111,7 @@ const locations = [
   },
   {
     name: "kill monster",
-    "button text": ["Volver a casa","Volver a casa", "Volver a casa"],
+    "button text": ["Volver","Volver a casa", "Volver a casa"],
     "button functions": [goTown],
     "button position top": ["20%"],
     "button position left": ["80%"],
@@ -178,7 +178,7 @@ const locations = [
   {
     name: "Store2",
     "button text": ["Poción de vida", "Arma nueva", "Volver"],
-    "button functions": [buyHealth, buyWeapon, goTown],
+    "button functions": [buyHealth, buyWeapon, goTown2],
     "button position top": ["35%","28%","75%"],
     "button position left": ["40%","20%","60%"],
     text: "Entras a una tienda por suministros.",
@@ -209,6 +209,7 @@ function inicio(){
           document.getElementById('marcopj').style.display = 'flex';
           document.getElementById('stats').style.display = 'flex';
           document.getElementById('controls').style.display= 'flex';
+          document.getElementById('marcomonstruo2').style.display = 'none';
           updateHealthBar();
       } else {
           alert('Por favor, ingresa tu nombre antes de comenzar el juego.');
@@ -282,7 +283,7 @@ function update(location) {
 
 
 function goTown() {
-  update(locations[1]);
+    update(locations[1]); // Vuelve al pueblo inicial por defecto
 }
 
 function goStore() {
@@ -359,34 +360,42 @@ function fightSlime() {
   
   // Verifica si el elemento existe antes de intentar acceder a su estilo
   const marcoMonstruo = document.getElementById('marcomonstruo2');
+  const monsterStats = document.getElementById('monsterStats');
+  
   if (marcoMonstruo) {
-    marcoMonstruo.style.display = 'flex'; // Muestra el marco del personaje
+    marcoMonstruo.style.display = 'flex'; 
+    monsterStats.style.display = 'flex'; // Muestra el marco del monstruo
   } else {
     console.error("El elemento 'marcomonstruo2' no existe en el DOM.");
   }
-  
-  const statsMonstruo = document.getElementById('monsterStats');
-  if (statsMonstruo) {
-    statsMonstruo.style.display = 'flex';
-  } else {
-    console.error("El elemento 'statsmonstruo' no existe en el DOM.");
-  }
 }
-
+  
 function fightBeast() {
   fighting = 1;
   goFight();
   update(locations[6]);
-  document.getElementById('marcomonstruo2').style.display = 'flex'; 
-  document.getElementById('statsMonstruo').style.display = 'flex'; // Muestra el marco del personaje
+  const marcoMonstruo = document.getElementById('marcomonstruo2');
+  const monsterStats = document.getElementById('monsterStats');
+  if (marcoMonstruo) {
+    marcoMonstruo.style.display = 'flex'; 
+    monsterStats.style.display = 'flex'; // Muestra el marco del monstruo
+  } else {
+    console.error("El elemento 'marcomonstruo2' no existe en el DOM.");
+  }
 }
 
 function fightDragon() {
   fighting = 2;
   goFight();
   update(locations[14]);
-  document.getElementById('marcomonstruo2').style.display = 'flex';
-  document.getElementById('statsMonstruo').style.display = 'flex';  // Muestra el marco del personaje
+  const marcoMonstruo = document.getElementById('marcomonstruo2');
+  const monsterStats = document.getElementById('monsterStats');
+  if (marcoMonstruo) {
+    marcoMonstruo.style.display = 'flex'; 
+    monsterStats.style.display = 'flex'; // Muestra el marco del monstruo
+  } else {
+    console.error("El elemento 'marcomonstruo2' no existe en el DOM.");
+  }
 }
 
 function goForest() {
@@ -394,14 +403,25 @@ function goForest() {
 }
 
 function goFight() {
-  monsterHealth = monsters[fighting].health;
-  monsterHealthText.innerText = monsterHealth; // Agrega esta línea para actualizar el texto de la salud del monstruo en la interfaz
-  
+  // Obtén la información del monstruo actual
+  const currentMonster = monsters[fighting];
+
+  // Actualiza la salud del monstruo en la interfaz
+  monsterHealth = currentMonster.health;
+  monsterHealthText.innerText = monsterHealth;
+
+  // Actualiza el nombre del monstruo en la interfaz
+  monsterName.innerText = currentMonster.name;
+
+  // Ocultamos los elementos marcomonstruo y monsterStats
+  document.getElementById('marcomonstruo').style.display = 'block';
+  document.getElementById('monsterStats').style.display = 'block';
+
   // Obtén el elemento de la imagen del monstruo
   const monsterImage = document.querySelector("#marcomonstruo2 img");
   
   // Actualiza el atributo src de la imagen del monstruo con la ruta de la imagen correspondiente al monstruo actual
-  monsterImage.src = monsters[fighting].image;
+  monsterImage.src = currentMonster.image;
 
   // Muestra el marco del monstruo
   const statsMonstruo = document.getElementById('monsterStats');
@@ -412,8 +432,8 @@ function goFight() {
     console.error("El elemento no existe en el DOM.");
   }
 }
-document.getElementById('marcomonstruo').style.display = 'block';
-document.getElementById('monsterStats').style.display = 'block';
+
+
 
 function endFight() {
   // Ocultar el marco del monstruo
