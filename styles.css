@@ -135,10 +135,11 @@ body img {
     bottom: 0;
     left: 15%;
     margin: 0 auto;
+    opacity: 0.5;
     border-radius: 30px;
-    background-color: #e7c967;
+    background-color: grey;
     border: 2px solid black;
-    color: white;
+    color: black;
   }
   #text img{
     border-radius: 30px;
