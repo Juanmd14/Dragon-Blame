@@ -200,6 +200,18 @@ body img {
     border-radius: 10px;
   }
 
+  /*EL nombre del player*/
+
+  #playerNameStat {
+    font-weight: bold; /* Establece el texto en negrita */
+    color: black; /* Cambia el color del texto a un tono más oscuro */
+    margin-left: 3%;
+    max-width: 100%; /* Establece el ancho máximo del elemento al 100% del contenedor */
+    overflow: hidden; /* Oculta el contenido que excede el ancho máximo */
+    text-overflow: ellipsis; 
+    white-space: nowrap; 
+  }
+
   #stats {
     display: flex;
     flex-direction: column;

@@ -129,14 +129,16 @@ const locations = [
   },
   { 
     name: "win", 
-    "button text": ["REPLAY?", "REPLAY?", "REPLAY?"], 
-    "button functions": [restart, restart, restart], 
-    text: "You defeat the dragon! YOU WIN THE GAME! &#x1F389;",
+    "button text": ["Volver a jugar?"], 
+    "button position top": ["32%"],
+    "button position left": ["48%"],
+    "button functions": [restart], 
+    text: "Mataste al Dragon, has ganado el juego! &#x1F389;",
     img: "img/Has ganado.png"
   },
   {
     name: "easter egg",
-    "button text": ["2", "8", "Go to town square?"],
+    "button text": ["2", "8", "Volver a la ciudad"],
     "button functions": [pickTwo, pickEight, goTown],
     text: "You find a secret game. Pick a number above. Ten numbers will be randomly chosen between 0 and 10. If the number you choose matches one of the random numbers, you win!"
   },
@@ -188,36 +190,38 @@ const locations = [
 ];
 
 
-function inicio(){
+let playerName = ''; // Variable global para almacenar el nombre del jugador
+
+function inicio() {
   const welcomeMessage = document.querySelector('.welcome-message');
 
   // retrasa el tiempo del mensaje al principio
   setTimeout(() => {
-      welcomeMessage.classList.add('show');
+    welcomeMessage.classList.add('show');
   }, 500);
 
   // click para inicio
   document.getElementById('startGame').addEventListener('click', function() {
-      var playerName = document.getElementById('playerName').value;
-      if (playerName.trim() !== '') {
-          // Aquí puedes hacer algo con el nombre del jugador, como mostrarlo.
+    playerName = document.getElementById('playerName').value; // Captura el nombre del jugador
+    if (playerName.trim() !== '') {
+      // Ocultar pantalla de inicio y mostrar el juego
+      document.getElementById('startScreen').style.display = 'none';
+      document.getElementById('fondo').style.display = 'flex';
+      update(locations[1]);
+      text.style.display = 'flex';
+      document.getElementById('marcopj').style.display = 'flex';
+      document.getElementById('stats').style.display = 'flex';
+      document.getElementById('controls').style.display = 'flex';
+      document.getElementById('marcomonstruo2').style.display = 'none';
+      updateHealthBar();
 
-          // Ocultar pantalla de inicio y mostrar el juego.
-          document.getElementById('startScreen').style.display = 'none';
-          document.getElementById('fondo').style.display = 'flex';
-          update(locations[1]);
-          text.style.display='flex';
-          document.getElementById('marcopj').style.display = 'flex';
-          document.getElementById('stats').style.display = 'flex';
-          document.getElementById('controls').style.display= 'flex';
-          document.getElementById('marcomonstruo2').style.display = 'none';
-          updateHealthBar();
-      } else {
-          alert('Por favor, ingresa tu nombre antes de comenzar el juego.');
-      }
+      // Actualizar el nombre del jugador en el marco de estadísticas
+      document.getElementById('playerNameStat').innerText = playerName;
+    } else {
+      alert('Por favor, ingresa tu nombre antes de comenzar el juego.');
+    }
   });
 }
-
 // Evento DOMContentLoaded para llamar a la función inicio()
 document.addEventListener('DOMContentLoaded', inicio());
 // initialize buttons
@@ -234,7 +238,7 @@ function update(location) {
   button3.style.display = 'none';
 
   // Verifica si estamos en "Escondido del slime"
-  if (location.name === "Escondido del slime" ||  location.name === "lose"  || location.name === "kill monster") {  // aca agregas locations si queres que se muestre 1 solo boton
+  if (location.name === "Escondido del slime" ||  location.name === "lose"  || location.name === "kill monster" || location.name === "win") {  // aca agregas locations si queres que se muestre 1 solo boton
     // Muestra solo el botón de "Huir"
     button1.innerText = location["button text"][0]; // Cambiado de 2 a 0 ya que solo hay un boton
     button1.onclick = location["button functions"][0]; // Cambiado de 2 a 0 ya que solo hay una funcion
