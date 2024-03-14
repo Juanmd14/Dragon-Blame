@@ -60,7 +60,7 @@ const locations = [
     "button position top": ["40%","40%","20%"],
     "button position left": ["17%","45%","18%"],
     text: "Llegas al pueblo A, no hay mucho, pero divisas una pequeña tienda, un cartel que señala la dirección hacia el bosque, y otro que señala la dirección hacia el pueblo B",
-    img: "img/ciudad A.jpg"
+    img: "img/Ciudad A.jpg"
   },
   {
     name: "Store",
