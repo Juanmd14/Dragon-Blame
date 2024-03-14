@@ -42,7 +42,7 @@ const monsters = [
     name: "Dragon",
     level: 20,
     health: 300,
-    image: "img/Dragon.jpg"
+    image: "img/Dragon foto.jpg"
   }
 ]
 const locations = [
@@ -57,17 +57,17 @@ const locations = [
     name: "Pueblo A",
     "button text": ["Entrar a la tienda", "Ir al bosque", "Seguir camino hacia las montañas"],
     "button functions": [goStore, goForest, goMountain],
-    "button position top": ["40%","35%","20%"],
-    "button position left": ["13%","77%","28%"],
+    "button position top": ["40%","40%","20%"],
+    "button position left": ["17%","45%","18%"],
     text: "Llegas al pueblo A, no hay mucho, pero divisas una pequeña tienda, un cartel que señala la dirección hacia el bosque, y otro que señala la dirección hacia el pueblo B",
-    img: "https://img.pikbest.com/origin/09/32/81/75fpIkbEsTygS.jpg!sw800"
+    img: "img/ciudad A.jpg"
   },
   {
     name: "Store",
     "button text": ["Poción de vida (10 de oro)", "Arma nueva(30 de oro)", "Volver"],
     "button functions": [buyHealth, buyWeapon, goTown],
-    "button position top": ["50%","60%","75%"],
-    "button position left": ["75%","25%","30%"],
+    "button position top": ["50%","50%","80%"],
+    "button position left": ["60%","40%","70%"],
     text: "Entras a una tienda por suministros. altos pobres",
     img: "img/Tienda.jpg"
   },
@@ -87,7 +87,7 @@ const locations = [
     "button position top": ["75%","75%","75%"],
     "button position left": ["35%","40%","45%"],
     text: "Blurp, Blurp",
-    img: "img/Slime fight2.jpg"
+    img: "img/Slime fight.jpg"
   },
  
   {
@@ -107,7 +107,7 @@ const locations = [
     "button position top": ["75%","75%","75%"],
     "button position left": ["35%","40%","45%"],
     text: "La bestia era enorme",
-    img : "img/Bestia pelea.jpg"
+    img : "img/bestia pelea.jpg"
   },
   {
     name: "kill monster",
@@ -131,7 +131,8 @@ const locations = [
     name: "win", 
     "button text": ["REPLAY?", "REPLAY?", "REPLAY?"], 
     "button functions": [restart, restart, restart], 
-    text: "You defeat the dragon! YOU WIN THE GAME! &#x1F389;" 
+    text: "You defeat the dragon! YOU WIN THE GAME! &#x1F389;",
+    img: "img/Has ganado.png"
   },
   {
     name: "easter egg",
@@ -143,8 +144,8 @@ const locations = [
     name: "Montañas",
     "button text": ["Entrar a la cueva", "Volver a la ciudad","Ir a la ciudad que sigue por el camino"],
     "button functions": [goCave, goTown, goTown2],
-    "button position top": ["80%","50%","55%"],
-    "button position left": ["40%","60%","20%"],
+    "button position top": ["30%","80%","50%"],
+    "button position left": ["40%","10%","60%"],
     text: "La montaña estaba vacia y el frio congelaba mis",
     img: "img/montaña.jpg"
   },
@@ -179,10 +180,10 @@ const locations = [
     name: "Store2",
     "button text": ["Poción de vida", "Arma nueva", "Volver"],
     "button functions": [buyHealth, buyWeapon, goTown2],
-    "button position top": ["35%","28%","75%"],
-    "button position left": ["40%","20%","60%"],
+    "button position top": ["28%","40%","88%"],
+    "button position left": ["20%","65%","73%"],
     text: "Entras a una tienda por suministros.",
-    img: "img/Store2.jpg"
+    img: "img/Tienda2.jpg"
   },
 ];
 
