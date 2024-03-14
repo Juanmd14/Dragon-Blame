@@ -12,13 +12,17 @@ const body = document.querySelector('body');
 const button1 = document.getElementById('button1');
 const button2 = document.getElementById('button2');
 const button3 = document.getElementById('button3');
-const text = document.getElementById('text');
+const text = document.getElementById('textp');
+const textcont = document.getElementById('textcontainer')
 const xpText = document.querySelector("#xpText");
 const healthText = document.querySelector("#healthText");
 const goldText = document.querySelector("#goldText");
 const monsterStats = document.querySelector("#monsterStats");
 const monsterName = document.querySelector("#monsterName");
 const monsterHealthText = document.querySelector("#monsterHealth");
+const personaje = document.getElementById('marco');
+const inventario = document.getElementById('inventariocontenedor')
+
 const weapons = [
   { name: 'palo', power: 5 },
   { name: 'Daga', power: 30 },
@@ -208,7 +212,7 @@ function inicio() {
       document.getElementById('startScreen').style.display = 'none';
       document.getElementById('fondo').style.display = 'flex';
       update(locations[1]);
-      text.style.display = 'flex';
+      textcont.style.display = 'flex';
       document.getElementById('marcopj').style.display = 'flex';
       document.getElementById('stats').style.display = 'flex';
       document.getElementById('controls').style.display = 'flex';
@@ -419,8 +423,8 @@ function goFight() {
   monsterName.innerText = currentMonster.name;
 
   // Ocultamos los elementos marcomonstruo y monsterStats
-  document.getElementById('marcomonstruo').style.display = 'block';
-  document.getElementById('monsterStats').style.display = 'block';
+  document.getElementById('marcomonstruo').style.display = 'flex';
+  document.getElementById('monsterStats').style.display = 'flex';
 
   // Obtén el elemento de la imagen del monstruo
   const monsterImage = document.querySelector("#marcomonstruo2 img");
@@ -560,4 +564,15 @@ function pickEight() {
   } else {
     text.innerText = "Número incorrecto. Inténtalo de nuevo.";
   }
-}
+};
+
+
+let visible = false;
+personaje.addEventListener("click", ()=>{
+  if (visible){
+    inventario.style.bottom = '-1000px';
+  } else {
+    inventario.style.bottom = '0';
+  }
+  visible = !visible;
+});
