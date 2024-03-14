@@ -107,7 +107,7 @@ const locations = [
     "button position top": ["75%","75%","75%"],
     "button position left": ["35%","40%","45%"],
     text: "La bestia era enorme",
-    img : "img/Bestiapelea.jpg"
+    img : "img/bestiapelea.jpg"
   },
   {
     name: "kill monster",
