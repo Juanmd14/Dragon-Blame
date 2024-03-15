@@ -59,7 +59,7 @@ const locations = [
   },
   {
     name: "Pueblo A",
-    "button text": ["Entrar a la tienda", "Ir al bosque", "Seguir camino hacia las montañas"],
+    "button text": ["Tienda", "Ir al bosque", "Montaña"],
     "button functions": [goStore, goForest, goMountain],
     "button position top": ["40%","40%","20%"],
     "button position left": ["17%","45%","18%"],
@@ -68,16 +68,16 @@ const locations = [
   },
   {
     name: "Store",
-    "button text": ["Poción de vida (10 de oro)", "Arma nueva(30 de oro)", "Volver"],
+    "button text": ["Poción", "Armas", "Salir"],
     "button functions": [buyHealth, buyWeapon, goTown],
-    "button position top": ["50%","50%","80%"],
-    "button position left": ["60%","40%","70%"],
-    text: "Entras a una tienda por suministros",
+    "button position top": ["51%","17%","91%"],
+    "button position left": ["24%","77%","76%"],
+    text: "Entras a una tienda por suministros, te ofrece pociones a 10 de oro y armas a 30 de oro.",
     img: "img/Tienda.jpg"
   },
   {
     name: "Bosque",
-    "button text": ["Pelear al Slime", "Esconderse detras de un arbol", "Huir"],
+    "button text": ["Pelear al Slime", "Esconderse", "Huir"],
     "button functions": [fightSlime, goThree, goTown],
     "button position top": ["55%","30%","74%"],
     "button position left": ["10%","74%","70%"],
@@ -96,7 +96,7 @@ const locations = [
  
   {
     name: "cave",
-    "button text": ["Pelear a la Bestia ", "Huir"],
+    "button text": ["Pelear ", "Huir"],
     "button functions": [fightBeast, goTown],
     "button position top": ["33%","80%"],
     "button position left": ["37%","45%"],
@@ -142,13 +142,13 @@ const locations = [
   },
   {
     name: "easter egg",
-    "button text": ["2", "8", "Volver a la ciudad"],
+    "button text": ["2", "8", "Ciudad"],
     "button functions": [pickTwo, pickEight, goTown],
     text: "Nivel Secreto!"
   },
   {
     name: "Montañas",
-    "button text": ["Entrar a la cueva", "Volver a la ciudad","Ir a la ciudad que sigue por el camino"],
+    "button text": ["Entrar a la cueva", "Volver a la ciudad","Ciudad Valak"],
     "button functions": [goCave, goTown, goTown2],
     "button position top": ["30%","80%","50%"],
     "button position left": ["40%","10%","60%"],
@@ -166,7 +166,7 @@ const locations = [
   },
   {
     name: "Pueblo B",
-    "button text": ["Entrar a la tienda", "Subir a lo alto de la montaña", "Volver"],
+    "button text": ["Tienda", "Montaña", "Volver"],
     "button functions": [goStore2, fightDragon, goMountain],
     "button position top": ["40%","30%","75%"],
     "button position left": ["13%","35%","30%"],
@@ -184,11 +184,11 @@ const locations = [
   },
   {
     name: "Store2",
-    "button text": ["Poción de vida", "Arma nueva", "Volver"],
+    "button text": ["Poción", "Armas", "Volver"],
     "button functions": [buyHealth, buyWeapon, goTown2],
     "button position top": ["28%","40%","88%"],
     "button position left": ["20%","65%","73%"],
-    text: "Entras a la tienda",
+    text: "Entras a la tienda, te ofrece pociones a 10 de oro y armas a 30 de oro.",
     img: "img/Tienda2.jpg"
   },
 ];
