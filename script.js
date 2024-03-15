@@ -21,7 +21,7 @@ const monsterStats = document.querySelector("#monsterStats");
 const monsterName = document.querySelector("#monsterName");
 const monsterHealthText = document.querySelector("#monsterHealth");
 const personaje = document.getElementById('marco');
-const inventario = document.getElementById('inventariocontenedor')
+const inventario = document.getElementById('inventariocontenedor');
 
 const weapons = [
   { name: 'palo', power: 5 },
@@ -366,6 +366,7 @@ function buyHealth() {
     health += 10;
     goldText.innerText = gold;
     healthText.innerText = health;
+    document.getElementById('vida').style.width = health + '%';
   } else {
     text.innerText = "No tienes oro para comprar esta pocion.";
   }
@@ -524,7 +525,10 @@ function attack() {
   if (Math.random() <= .1 && inventory.length !== 1) {
     text.innerText += " Tu " + inventory.pop() + " se ha roto.";
     currentWeapon--;
-  }
+  };
+
+  document.getElementById('vida').style.width = health + '%'; //actualiza la barra de vida del pj
+  
 }
 
 
@@ -551,7 +555,7 @@ function updateHealthBar() {
   // Si el personaje está en una pelea (fighting es verdadero), actualiza la barra de vida
   // de acuerdo a la salud del personaje, de lo contrario, la barra de vida permanece sin cambios.
   if (fighting) {
-    barraVida.style.width = healthPercentage + '%'; // Establece el ancho de la barra de vida según el porcentaje de vida actual
+    // barraVida.style.width = healthPercentage + '%'; // Establece el ancho de la barra de vida según el porcentaje de vida actual
     healthText.innerText = health; // Actualiza el texto de la salud
   } else {
     // Si no está en pelea, se asume que el personaje está comprando una poción,
@@ -560,7 +564,7 @@ function updateHealthBar() {
     if (health > maxHealth) {
       health = maxHealth; // Limita la salud al valor máximo
     }
-    barraVida.style.width = ((health / maxHealth) * 100) + '%'; // Actualiza el ancho de la barra de vida
+    // barraVida.style.width = ((health / maxHealth) * 100) + '%'; // Actualiza el ancho de la barra de vida
     healthText.innerText = health; // Actualiza el texto de la salud
   }
 }
@@ -617,3 +621,4 @@ personaje.addEventListener("click", ()=>{
   }
   visible = !visible;
 });
+

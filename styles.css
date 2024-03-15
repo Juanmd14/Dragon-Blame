@@ -131,6 +131,7 @@ body img {
   #fondoimg{
     object-fit: fill;
   }
+
 /*  no entendi para que sirve pero debe ser un boton extra
   #goToForest{
     display: flex;
@@ -163,7 +164,8 @@ body img {
     background-color: rgba(128, 128, 128, 0.5);
     color: black;
     box-sizing: border-box; /* Incluye el relleno y el borde en el tamaño total */
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+    /* font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif puse otro tipo de letra, si no gusta volvemos al normal*/
+    font-family: "UnifrakturCook", cursive;
   }
   
   #textp {
@@ -233,9 +235,10 @@ body img {
   /*EL nombre del player*/
 
   #playerNameStat {
+    font-family: "UnifrakturCook", cursive;
+    font-size: 20px;
     font-weight: bold; /* Establece el texto en negrita */
-    color: black; /* Cambia el color del texto a un tono más oscuro */
-    margin-left: 3%;
+    margin: auto auto 5px auto;
     max-width: 100%; /* Establece el ancho máximo del elemento al 100% del contenedor */
     overflow: hidden; /* Oculta el contenido que excede el ancho máximo */
     text-overflow: ellipsis; 
@@ -265,7 +268,31 @@ body img {
   
     #barravida {
       height: 12px;
+      border-radius: 50px;
+      border: 1px solid black;
+      flex-grow: 1;
+      font-size: 90%;
+      display: flex;
+      align-items: center;
+    }
+    #vida{
+      width: 100%;
+      height: 100%;
       background-color: red;
+      transition: width 0.5s ease;
+      border-radius: 50px;
+    }
+  #healthText {
+    position: absolute;
+    color: white; /* Cambia el color del texto a blanco */
+    font-size: 14px; /* Cambia el tamaño de la fuente a 14px */
+    font-weight: bold; /* Hace que el texto sea negrita */
+    left: 60%;
+    }
+
+    #barraxp {
+      height: 12px;
+      background-color: yellow;
       border-radius: 50px;
       border: 1px solid black;
       flex-grow: 1;
@@ -274,11 +301,17 @@ body img {
       justify-content: center; 
       align-items: center; 
     }
-  #healthText {
-    color: white; /* Cambia el color del texto a blanco */
-    font-size: 14px; /* Cambia el tamaño de la fuente a 14px */
-    font-weight: bold; /* Hace que el texto sea negrita */
-}
+
+    #xpText {
+      color: white; /* Cambia el color del texto a blanco */
+      font-size: 14px; /* Cambia el tamaño de la fuente a 14px */
+      font-weight: bold; /* Hace que el texto sea negrita */
+      }
+
+      .stat-text{
+        width: 25%;
+      }
+
 
 #marcomonstruo {
   display: none;
