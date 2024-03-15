@@ -12,8 +12,8 @@ const body = document.querySelector('body');
 const button1 = document.getElementById('button1');
 const button2 = document.getElementById('button2');
 const button3 = document.getElementById('button3');
-const text = document.getElementById('textp');
-const textcont = document.getElementById('textcontainer')
+const text = document.querySelector('#textp');
+const textcont = document.getElementById('textcontainer');
 const xpText = document.querySelector("#xpText");
 const healthText = document.querySelector("#healthText");
 const goldText = document.querySelector("#goldText");
@@ -63,7 +63,7 @@ const locations = [
     "button functions": [goStore, goForest, goMountain],
     "button position top": ["40%","40%","20%"],
     "button position left": ["17%","45%","18%"],
-    text: "Llegas al pueblo A, no hay mucho, pero divisas una pequeña tienda, un cartel que señala la dirección hacia el bosque, y otro que señala la dirección hacia el pueblo B",
+    text: "Llegas al pueblo, no hay mucho, pero divisas una pequeña tienda, un cartel que señala la dirección hacia el bosque, y otro que señala la dirección hacia las montañas",
     img: "img/CiudadA.jpg"
   },
   {
@@ -72,7 +72,7 @@ const locations = [
     "button functions": [buyHealth, buyWeapon, goTown],
     "button position top": ["50%","50%","80%"],
     "button position left": ["60%","40%","70%"],
-    text: "Entras a una tienda por suministros. altos pobres",
+    text: "Entras a una tienda por suministros",
     img: "img/Tienda.jpg"
   },
   {
@@ -81,7 +81,7 @@ const locations = [
     "button functions": [fightSlime, goThree, goTown],
     "button position top": ["55%","30%","74%"],
     "button position left": ["10%","74%","70%"],
-    text: "Encontraste un grupo de slime, que haras?",
+    text: "Caminas por el bosque y ves un slime",
     img: "img/Bosque2.jpg"
   },
   {
@@ -100,7 +100,7 @@ const locations = [
     "button functions": [fightBeast, goTown],
     "button position top": ["33%","80%"],
     "button position left": ["37%","45%"],
-    text: "Entras a la cueva y en la oscuridad ves la bestia.",
+    text: "Entras a la cueva y en la oscuridad ves los ojos de la bestia.",
     img: "img/Cueva.jpg"
   
   },
@@ -110,12 +110,12 @@ const locations = [
     "button functions": [attack, dodge, goMountain],
     "button position top": ["75%","75%","75%"],
     "button position left": ["35%","40%","45%"],
-    text: "La bestia era enorme",
+    text: "¡Grrrrooaar!",
     img : "img/bestiapelea.jpg"
   },
   {
     name: "kill monster",
-    "button text": ["Volver","Volver a casa", "Volver a casa"],
+    "button text": ["Volver"],
     "button functions": [goTown],
     "button position top": ["20%"],
     "button position left": ["80%"],
@@ -128,7 +128,7 @@ const locations = [
     "button position top": ["32%"],
     "button position left": ["48%"],
     "button functions": [restart],
-    text: "Has muerto. &#x2620;",
+    text: "Has muerto.",
     img: "img/Muerte.jpg"
   },
   { 
@@ -144,7 +144,7 @@ const locations = [
     name: "easter egg",
     "button text": ["2", "8", "Volver a la ciudad"],
     "button functions": [pickTwo, pickEight, goTown],
-    text: "You find a secret game. Pick a number above. Ten numbers will be randomly chosen between 0 and 10. If the number you choose matches one of the random numbers, you win!"
+    text: "Nivel Secreto!"
   },
   {
     name: "Montañas",
@@ -152,16 +152,16 @@ const locations = [
     "button functions": [goCave, goTown, goTown2],
     "button position top": ["30%","80%","50%"],
     "button position left": ["40%","10%","60%"],
-    text: "La montaña estaba vacia y el frio congelaba mis",
+    text: "En la montaña habia una gran cueva, la siguiente ciudad no estaba muy lejos",
     img: "img/montaña.jpg"
   },
   {
     name: "Escondido del slime",
-    "button text": ["Ya no te ve es hora de irte"],
+    "button text": ["Volver"],
     "button functions": [goTown],
     "button position top": ["50%"],
     "button position left": ["78%"],
-    text: "rodeando el arbol el slime ya no me ve",
+    text: "rodeando el arbol el slime ya no me ataca",
     img: "img/escondido.jpg"
   },
   {
@@ -170,7 +170,7 @@ const locations = [
     "button functions": [goStore2, fightDragon, goMountain],
     "button position top": ["40%","30%","75%"],
     "button position left": ["13%","35%","30%"],
-    text: "Llegas al pueblo A, no hay mucho, pero divisas una pequeña tienda, un cartel que señala la dirección hacia el bosque, y otro que señala la dirección hacia el pueblo B",
+    text: "Llegas a Valak, donde el eco de temibles rugidos y una imponente montaña sugieren la cercanía de un Dragon",
     img: "img/ciudad B.jpg"
   },
   {
@@ -179,7 +179,7 @@ const locations = [
     "button functions": [attack, dodge, goTown2],
     "button position top": ["75%","75%","75%"],
     "button position left": ["35%","40%","55%"],
-    text: "Dragon",
+    text: "¡Grrraaawr!",
     img: "img/Dragon.jpg"
   },
   {
@@ -188,10 +188,11 @@ const locations = [
     "button functions": [buyHealth, buyWeapon, goTown2],
     "button position top": ["28%","40%","88%"],
     "button position left": ["20%","65%","73%"],
-    text: "Entras a una tienda por suministros.",
+    text: "Entras a la tienda",
     img: "img/Tienda2.jpg"
   },
 ];
+
 
 
 let playerName = ''; // Variable global para almacenar el nombre del jugador
@@ -199,12 +200,12 @@ let playerName = ''; // Variable global para almacenar el nombre del jugador
 function inicio() {
   const welcomeMessage = document.querySelector('.welcome-message');
 
-  // retrasa el tiempo del mensaje al principio
+  // Retrasa el tiempo del mensaje al principio
   setTimeout(() => {
     welcomeMessage.classList.add('show');
   }, 500);
 
-  // click para inicio
+  // Click para inicio
   document.getElementById('startGame').addEventListener('click', function() {
     playerName = document.getElementById('playerName').value; // Captura el nombre del jugador
     if (playerName.trim() !== '') {
@@ -233,8 +234,42 @@ button1.onclick = goStore;
 button2.onclick = goForest;
 button3.onclick = goMountain;
 
+
+let estaEscribiendo = false;
+let intervalo; // Variable para almacenar el intervalo
+
+function escribirTexto(texto) {
+  if (estaEscribiendo) return;
+  estaEscribiendo = true;
+
+  const textoElemento = document.getElementById('textp');
+  textoElemento.innerHTML = ''; // Usa innerHTML para asegurar que el contenido se limpie completamente
+
+  let i = 0;
+  intervalo = setInterval(() => {
+    if (i < texto.length) {
+      const letraSpan = document.createElement('span');
+      letraSpan.textContent = texto[i];
+      letraSpan.classList.add('fade-in'); // Aplica la clase fade-in a cada letra
+      textoElemento.appendChild(letraSpan);
+      i++;
+    } else {
+      clearInterval(intervalo);
+      estaEscribiendo = false;
+    }
+  }, 32); // Ajusta este tiempo según necesites
+}
+
+// Función para detener la escritura cuando se cambie de ubicación
+function detenerEscritura() {
+  clearInterval(intervalo);
+  estaEscribiendo = false;
+}
+
+
 function update(location) {
   fondoimg.setAttribute("src", location.img); // Cambia la imagen del fondo en el div fondo
+  detenerEscritura();
   
   // Oculta todos los botones
   button1.style.display = 'none';
@@ -268,6 +303,10 @@ function update(location) {
     button3.style.display = 'block'; // Agregado
   }
 
+  text.innerText = location.text;
+  escribirTexto(location.text);
+  
+
   button1.style.top = location["button position top"][0];
   button2.style.top = location["button position top"][1];
   button3.style.top = location["button position top"][2];
@@ -289,6 +328,8 @@ function update(location) {
    console.error("El elemento 'statsmonstruo' no existe en el DOM.");
   }
 }
+
+
 
 
 function goTown() {

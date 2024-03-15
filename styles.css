@@ -20,6 +20,8 @@ body img {
     color: #ffffff;
     position: relative;
   }
+
+  
   
   .start-button {
     background-image: linear-gradient(to bottom, #f8c313 50%, #b58f04 100%); /* efecto Linear gradient */
@@ -50,7 +52,12 @@ body img {
       transform: translateY(0);
     }
   }
-  
+
+  .fade-in {
+    animation: fadeIn 0.5s ease-out;
+  }
+
+
   /* Aplica las animaciones al mensaje de bienvenida */
   .welcome-message {
     position: absolute;
@@ -74,6 +81,9 @@ body img {
     animation: fadeOut 1s forwards;
   }
   
+
+
+
   #intro {
     position: absolute;
     top: 0;
@@ -115,7 +125,7 @@ body img {
   #fondoimg{
     object-fit: fill;
   }
-
+/*  no entendi para que sirve pero debe ser un boton extra
   #goToForest{
     display: flex;
     position: absolute;
@@ -126,39 +136,41 @@ body img {
     align-items: center;
     background: linear-gradient(to bottom, #f8c313 50%, #b58f04 100%);
   }
-  #textcontainer{
+
+  */
+  #textcontainer {
     display: none;
-    width: 100%;
+    width: 60%;
     height: 10%;
     position: absolute;
-    bottom: 3%;
+    bottom: 2%;
+    right: 14%;
     opacity: 0.9;
-  }
-  #text{
-    width: 40%;
-    height: 100%;
-    margin: 0 auto;
     border-radius: 30px;
-    background-color: grey;
-    border: 2px solid black;
-    color: black;
+    border: 1px solid black;
+    overflow: hidden; /* Evita que el texto se salga del contenedor */
   }
-  #textp{
-    font-size: 25px;
+  
+  #text {
+    width: 100%; /* Ajusta el ancho al 100% para que ocupe todo el contenedor */
+    height: 100%; /* Ajusta la altura al 100% para que ocupe todo el contenedor */
+    background-color: rgba(128, 128, 128, 0.5);
+    color: black;
+    box-sizing: border-box; /* Incluye el relleno y el borde en el tamaño total */
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+  }
+  
+  #textp {
+    font-size: 1.5vw;
     position: absolute;
     z-index: 3;
-    width: 40%;
-    height: 100%;
-    padding: 5px;
-  }
-  #text img{
-    border-radius: 30px;
-    object-fit: cover;
-    object-fit: fill;
-    height: 100%;
     width: 100%;
-    opacity: 0.5;
+    height: 100%;
+    text-align: center;
+    line-height: 150%; /* Ajusta el espacio entre líneas al 150% del tamaño de la fuente */
+    margin: 10px 0; /* Agrega un margen superior e inferior de 10px */
   }
+
 
   #map{
     display: none;
