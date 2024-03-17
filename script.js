@@ -323,6 +323,7 @@ function update(location) {
   } else {
    console.error("El elemento 'statsmonstruo' no existe en el DOM.");
   }
+  document.getElementById('experiencia').style.width = (xp/xpNeed*100) + '%'; // Actualiza la barra de xp
 }
 
 
@@ -357,7 +358,7 @@ function goStore2() {
 }
 
 function buyHealth() {
-  if (gold >= 10 && health > maxHealth) {
+  if (gold >= 10 && health < maxHealth) {
     gold -= 10;
     health += 10;
     goldText.innerText = gold;
@@ -478,17 +479,6 @@ function goFight() {
   // } else {
   //   console.error("El elemento no existe en el DOM.");
   // }
-}
-
-
-
-function endFight() {
-  // Ocultar el marco del monstruo
-  document.getElementById('marcomonstruo').style.display = 'none';
-  document.getElementById('monsterStats').style.display = 'none';
-  console.log(xp);
-  console.log(xpNeed);
-  document.getElementById('experiencia').style.width = (xp/xpNeed*100) + '%'; // Actualiza la barra de xp
 }
 
 function attack() {
