@@ -2,6 +2,7 @@ let xp = 0;
 let xpNeed = 30;
 let health = 100;
 let maxHealth = 100;
+let lvl = 1;
 let gold = 50;
 let currentWeapon = 0;
 let fighting;
@@ -471,15 +472,7 @@ function goFight() {
   // Actualiza el atributo src de la imagen del monstruo con la ruta de la imagen correspondiente al monstruo actual
   monsterImage.src = currentMonster.image;
 
-  // Muestra el marco del monstruo, momentaneamente lo saco porque no hace nada. Rodri
-  // const statsMonstruo = document.getElementById('monsterStats');
-  // const marcoMonstruo = document.getElementById('marcomonstruo2');
-  // if (marcoMonstruo && statsMonstruo) {
-  //   marcoMonstruo.style.display = 'flex';
-  // } else {
-  //   console.error("El elemento no existe en el DOM.");
-  // }
-}
+ }
 
 function attack() {
   text.innerText = monsters[fighting].name + " ataca.";
@@ -535,11 +528,19 @@ function dodge() {
   text.innerText = "Has esquivado el ataque de " + monsters[fighting].name;
 }
 
-
+const subirlvl = () => {
+  if (xp>=xpNeed) {
+    xp = 0;
+    xpNeed = xpNeed*1.5;
+    lvl += 1;
+    maxHealth = maxHealth*1.2;
+  }
+}
 
 function defeatMonster() {
   gold += Math.floor(monsters[fighting].level * 6.7);
   xp += monsters[fighting].level;
+  subirlvl();
   goldText.innerText = gold;
   xpText.innerText = xp;
   update(locations[7]);
@@ -569,27 +570,3 @@ personaje.addEventListener("click", ()=>{
   }
   visible = !visible;
 });
-
-
-// function updateHealthBar() { funcion deshabilitada porque ya funciona de otra forma, pero quiero chusmear lo de la vida maxima. Rodri
-//   const maxHealth = 100; // Valor máximo de vida del personaje
-//   const healthPercentage = (health / maxHealth) * 100; // Calcula el porcentaje de vida actual
-//   const barraVida = document.getElementById('barravida');
-//   const healthText = document.getElementById('healthText');
-
-//   // Si el personaje está en una pelea (fighting es verdadero), actualiza la barra de vida
-//   // de acuerdo a la salud del personaje, de lo contrario, la barra de vida permanece sin cambios.
-//   if (fighting) {
-//     // barraVida.style.width = healthPercentage + '%'; // Establece el ancho de la barra de vida según el porcentaje de vida actual
-//     healthText.innerText = health; // Actualiza el texto de la salud
-//   } else {
-//     // Si no está en pelea, se asume que el personaje está comprando una poción,
-//     // por lo que la barra de vida se incrementa en 10 puntos.
-//     health += 10;
-//     if (health > maxHealth) {
-//       health = maxHealth; // Limita la salud al valor máximo
-//     }
-//     // barraVida.style.width = ((health / maxHealth) * 100) + '%'; // Actualiza el ancho de la barra de vida
-//     healthText.innerText = health; // Actualiza el texto de la salud
-//   }
-// }
