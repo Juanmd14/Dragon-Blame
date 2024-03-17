@@ -292,20 +292,27 @@ body img {
 
     #barraxp {
       height: 12px;
-      background-color: yellow;
       border-radius: 50px;
       border: 1px solid black;
       flex-grow: 1;
       font-size: 90%;
       display: flex;
-      justify-content: center; 
-      align-items: center; 
+      align-items: center;
+      }
+    #experiencia{
+      width: 0%;
+      height: 100%;
+      background-color: yellow;
+      transition: width 0.5s ease;
+      border-radius: 50px;
     }
 
     #xpText {
+      position: absolute;
       color: white; /* Cambia el color del texto a blanco */
       font-size: 14px; /* Cambia el tamaño de la fuente a 14px */
       font-weight: bold; /* Hace que el texto sea negrita */
+      left: 60%;
       }
 
       .stat-text{
@@ -355,10 +362,12 @@ body img {
   
   #stats2 {
     display: flex;
-    justify-content: center;
-    margin: 18px 0 auto 10px;
+    flex-direction: column;
+    position: relative;
     font-family: Arial, Helvetica, sans-serif, cursive;
-    width: 60%;
+    justify-content: space-around;
+    width: 55%;
+    margin: 18px 0 auto 10px;
     color: #0a0a23;
   }
   
@@ -366,20 +375,32 @@ body img {
     display: block;
     width: 100%;
     text-align: center;   
+    font-family: "UnifrakturCook", cursive;
   }
   
-  
-  #monsterHealth {
-    display: flex;
-    margin-top: 5px;
+  #monsterHealthb {
     height: 12px;
-    width: 100%;
-    background-color: rgb(36, 121, 19);
     border-radius: 50px;
     border: 1px solid black;
+    flex-grow: 1;
     font-size: 90%;
-    justify-content: center;
+    display: flex;
     align-items: center;
+    margin-top: 5px;
+  }
+  #vidaMonster{
+    width: 100%;
+    height: 100%;
+    background-color: rgb(36, 121, 19);
+    transition: width 0.5s ease;
+    border-radius: 50px;
+  }
+  #monsterHealth{
+    position: absolute;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    left: 50%;
   }
   
   

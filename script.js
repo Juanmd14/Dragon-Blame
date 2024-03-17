@@ -1,5 +1,7 @@
 let xp = 0;
+let xpNeed = 30;
 let health = 100;
+let maxHealth = 100;
 let gold = 50;
 let currentWeapon = 0;
 let fighting;
@@ -139,12 +141,6 @@ const locations = [
     "button functions": [restart], 
     text: "Mataste al Dragon, has ganado el juego! &#x1F389;",
     img: "img/Has ganado.png"
-  },
-  {
-    name: "easter egg",
-    "button text": ["2", "8", "Ciudad"],
-    "button functions": [pickTwo, pickEight, goTown],
-    text: "Nivel Secreto!"
   },
   {
     name: "Montañas",
@@ -341,11 +337,11 @@ function goStore() {
 }
 
 function goMountain() {
-  update(locations[11]);
+  update(locations[10]);
 }
 
 function goThree() {
-  update(locations[12]);
+  update(locations[11]);
 }
 
 function goCave() {
@@ -353,22 +349,22 @@ function goCave() {
 }
 
 function goTown2() {
-  update(locations[13]);
+  update(locations[12]);
 }
 
 function goStore2() {
-  update(locations[15]);
+  update(locations[14]);
 }
 
 function buyHealth() {
-  if (gold >= 10) {
+  if (gold >= 10 && health > maxHealth) {
     gold -= 10;
     health += 10;
     goldText.innerText = gold;
     healthText.innerText = health;
     document.getElementById('vida').style.width = health + '%';
   } else {
-    text.innerText = "No tienes oro para comprar esta pocion.";
+    text.innerText = "No tienes oro para comprar esta pocion o tu vida esta al maximo.";
   }
 }
 
@@ -438,7 +434,7 @@ function fightBeast() {
 function fightDragon() {
   fighting = 2;
   goFight();
-  update(locations[14]);
+  update(locations[13]);
   const marcoMonstruo = document.getElementById('marcomonstruo2');
   const monsterStats = document.getElementById('monsterStats');
   if (marcoMonstruo) {
@@ -460,7 +456,7 @@ function goFight() {
   // Actualiza la salud del monstruo en la interfaz
   monsterHealth = currentMonster.health;
   monsterHealthText.innerText = monsterHealth;
-
+  document.getElementById('vidaMonster').style.width = (monsterHealth/monsters[fighting].health*100) + '%';
   // Actualiza el nombre del monstruo en la interfaz
   monsterName.innerText = currentMonster.name;
 
@@ -474,14 +470,14 @@ function goFight() {
   // Actualiza el atributo src de la imagen del monstruo con la ruta de la imagen correspondiente al monstruo actual
   monsterImage.src = currentMonster.image;
 
-  // Muestra el marco del monstruo
-  const statsMonstruo = document.getElementById('monsterStats');
-  const marcoMonstruo = document.getElementById('marcomonstruo2');
-  if (marcoMonstruo && statsMonstruo) {
-    marcoMonstruo.style.display = 'flex';
-  } else {
-    console.error("El elemento no existe en el DOM.");
-  }
+  // Muestra el marco del monstruo, momentaneamente lo saco porque no hace nada. Rodri
+  // const statsMonstruo = document.getElementById('monsterStats');
+  // const marcoMonstruo = document.getElementById('marcomonstruo2');
+  // if (marcoMonstruo && statsMonstruo) {
+  //   marcoMonstruo.style.display = 'flex';
+  // } else {
+  //   console.error("El elemento no existe en el DOM.");
+  // }
 }
 
 
@@ -490,7 +486,9 @@ function endFight() {
   // Ocultar el marco del monstruo
   document.getElementById('marcomonstruo').style.display = 'none';
   document.getElementById('monsterStats').style.display = 'none';
-  
+  console.log(xp);
+  console.log(xpNeed);
+  document.getElementById('experiencia').style.width = (xp/xpNeed*100) + '%'; // Actualiza la barra de xp
 }
 
 function attack() {
@@ -527,8 +525,9 @@ function attack() {
     currentWeapon--;
   };
 
+
   document.getElementById('vida').style.width = health + '%'; //actualiza la barra de vida del pj
-  
+  document.getElementById('vidaMonster').style.width = (monsterHealth/monsters[fighting].health*100) + '%'; // actualiza la barra de vida del enemigo
 }
 
 
@@ -568,27 +567,7 @@ function restart() {
   location.reload();
 }
 
-function pickTwo() {
-  let randomNumber = Math.floor(Math.random() * 10);
-  if (randomNumber === 2) {
-    text.innerText = "¡Has ganado! La recompensa es de 100 monedas de oro.";
-    gold += 100;
-    goldText.innerText = gold;
-  } else {
-    text.innerText = "Número incorrecto. Inténtalo de nuevo.";
-  }
-}
 
-function pickEight() {
-  let randomNumber = Math.floor(Math.random() * 10);
-  if (randomNumber === 8) {
-    text.innerText = "¡Has ganado! La recompensa es de 200 monedas de oro.";
-    gold += 200;
-    goldText.innerText = gold;
-  } else {
-    text.innerText = "Número incorrecto. Inténtalo de nuevo.";
-  }
-};
 
 
 let visible = false;
