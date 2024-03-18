@@ -364,7 +364,12 @@ function goStore2() {
 function buyHealth() {
   if (gold >= 10 && health < maxHealth) {
     gold -= 10;
-    health += 10;
+    let diferencia = Math.abs(maxHealth-health)
+    if (diferencia>10){
+      health += 10;
+    } else {
+      health += diferencia
+    };
     goldText.innerText = gold;
     healthText.innerText = `${health}/${maxHealth}`;
     document.getElementById('vida').style.width = (health/maxHealth*100) + '%'; //actualiza la barra de vida del pj
