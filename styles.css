@@ -120,6 +120,10 @@ body img {
   #button3{
     position: relative;
   }
+  
+  #controls #button4 {
+    display: none !important; /* Anula la propiedad display flex para el botón dentro de #controls */
+  }
 
   #fondo{
     display: none;
@@ -459,3 +463,10 @@ body img {
   #tiendacontenedor{
     display: none;
   }
+
+
+  .sword-image {
+    width: 100px; /* Ajusta el tamaño según sea necesario */
+    height: auto;
+  }
+  

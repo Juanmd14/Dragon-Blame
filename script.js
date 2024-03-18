@@ -15,6 +15,7 @@ const body = document.querySelector('body');
 const button1 = document.getElementById('button1');
 const button2 = document.getElementById('button2');
 const button3 = document.getElementById('button3');
+const button4 = document.getElementById('button4');
 const text = document.querySelector('#textp');
 const textcont = document.getElementById('textcontainer');
 const xpText = document.querySelector("#xpText");
@@ -156,11 +157,12 @@ const locations = [
   {
     name: "Escondido del slime",
     "button text": ["Volver"],
-    "button functions": [goTown],
+    "button functions": [goTown,],
     "button position top": ["50%"],
     "button position left": ["78%"],
     text: "rodeando el arbol el slime ya no me ataca",
-    img: "img/escondido.jpg"
+    img: "img/escondido.jpg",
+    swordImg: "img/sword.png"
   },
   {
     name: "Pueblo B",
@@ -266,6 +268,18 @@ function detenerEscritura() {
 }
 
 
+let swordButtonAdded = false;
+
+function hacerVisibleBoton(location) {
+  const button4 = document.getElementById('button4'); // Obtén el botón "Sacar Espada Secreta"
+
+  if (location === 'locations 11') {
+    button4.classList.add('button-location-11'); // Agrega la clase para mostrar el botón
+  } else {
+    button4.classList.remove('button-location-11'); // Quita la clase para ocultar el botón
+  }
+}
+
 function update(location) {
   fondoimg.setAttribute("src", location.img); // Cambia la imagen del fondo en el div fondo
   detenerEscritura();
@@ -274,21 +288,22 @@ function update(location) {
   button1.style.display = 'none';
   button2.style.display = 'none';
   button3.style.display = 'none';
+  
 
   // Verifica si estamos en "Escondido del slime"
-  if (location.name === "Escondido del slime" ||  location.name === "lose"  || location.name === "kill monster" || location.name === "win") {  // aca agregas locations si queres que se muestre 1 solo boton
+  if (location.name === "lose"  || location.name === "kill monster" || location.name === "win") {  // aca agregas locations si queres que se muestre 1 solo boton
     // Muestra solo el botón de "Huir"
     button1.innerText = location["button text"][0]; // Cambiado de 2 a 0 ya que solo hay un boton
     button1.onclick = location["button functions"][0]; // Cambiado de 2 a 0 ya que solo hay una funcion
     button1.style.display = 'block';       
-  } else if (location.name === "cave") {   //aca tambien podemos agregar mas locations
+  } else if (location.name === "cave" || location.name === "Escondido del slime") {   //aca tambien podemos agregar mas locations
     // Muestra solo 2 botones 
     button1.innerText = location["button text"][0]; 
     button1.onclick = location["button functions"][0]; 
     button1.style.display = 'block';
-    button2.innerText = location["button text"][1]; 
-    button2.onclick = location["button functions"][1]; 
-    button2.style.display = 'block';
+    button4.innerText = location["button text"][1]; 
+    button4.onclick = location["button functions"][1]; 
+    button4.style.display = 'block';
   } else {
     //  muestra los botones normales
     button1.innerText = location["button text"][0];
@@ -312,6 +327,12 @@ function update(location) {
   button1.style.left = location["button position left"][0];
   button2.style.left = location["button position left"][1];
   button3.style.left = location["button position left"][2];
+
+  button4.onclick = function() {
+    // Ocultar el botón al hacer clic en él
+    button4.remove();
+  };
+
 
   // Oculta el marco del monstruo al actualizar la ubicación
   const marcoMonstruo = document.getElementById('marcomonstruo2');
@@ -342,9 +363,43 @@ function goMountain() {
   update(locations[10]);
 }
 
+//NO SE COOMO SACAR EL BOTON AIUDA
 function goThree() {
-  update(locations[11]);
+  update(locations[11]); // Actualiza a la ubicación correspondiente a la posición 11
+
+  const swordImage = document.createElement('img');
+  swordImage.src = locations[11].swordImg; // Obtiene la ruta de la imagen de la espada desde el objeto locations 11
+  swordImage.classList.add('sword-image'); // Agrega una clase para aplicar estilos si es necesario
+
+  const boton4 = document.getElementById('button4');
+  boton4.style.display = 'none'; // Oculta el botón "Escondido del slime" (botón 4) después de ser clickeado
+  boton4.onclick = null; // Desvincula cualquier función de clic anterior
+
+  // Si el botón de la espada secreta aún no se ha agregado, agregalo
+  if (!swordButtonAdded) {
+    const buttonContainer = document.getElementById('controls'); // Obtén el contenedor de botones
+
+    // Crea un botón para sacar la espada secreta
+    const sacarEspadaButton = document.createElement('button');
+    sacarEspadaButton.innerText = 'Espada Misteriosa';
+    sacarEspadaButton.onclick = espadaSecreta; // Asigna la función espadaSecreta al evento click del botón
+
+    sacarEspadaButton.style.position = 'absolute'; // Establece la posición absoluta para ubicar el botón
+    sacarEspadaButton.style.top = '70%'; // Ajusta la distancia desde la parte inferior del contenedor
+    sacarEspadaButton.style.right = '50%'; // Ajusta la distancia desde el borde derecho del contenedor
+
+    // Agrega el botón al contenedor de botones
+    buttonContainer.appendChild(sacarEspadaButton);
+
+    // Marca que el botón de la espada secreta se agrego
+    swordButtonAdded = true;
+  }
+
+  // Agrega la imagen de la espada al contenedor adecuado en tu HTML (donde quieres que aparezca la imagen)
+  const swordContainer = document.getElementById('sword-container');
+  swordContainer.appendChild(swordImage);
 }
+
 
 function goCave() {
   update(locations[5]); 
@@ -372,6 +427,20 @@ function buyHealth() {
     document.getElementById('vida').style.width = (health/maxHealth*100) + '%'; //actualiza la barra de vida del pj
   } else {
     text.innerText = "No tienes oro para comprar esta pocion o tu vida esta al maximo.";
+  }
+}
+
+function espadaSecreta() {
+  // Verificar si hay un elemento en la posición 11 del array locations y si el nivel es mayor que 5
+  if (locations[11] !== undefined && nivel > 5) {
+    // Sacar la espada secreta
+    text.innerText = "Has conseguido la espada matadragones es hora de ir a por el Dragon!!"
+    weapons.push(espadaSecreta);
+    console.log("Ahora tienes :", weapons);
+
+  } else {
+    console.log("No puedes sacar la espada secreta con tu nivel.");
+    text.innerText = "Aun no puedes sacar la espada"
   }
 }
 
