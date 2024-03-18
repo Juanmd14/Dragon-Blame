@@ -25,6 +25,7 @@ const monsterName = document.querySelector("#monsterName");
 const monsterHealthText = document.querySelector("#monsterHealth");
 const personaje = document.getElementById('marco');
 const inventario = document.getElementById('inventariocontenedor');
+const nivel = document.getElementById('nivel');
 
 const weapons = [
   { name: 'palo', power: 5 },
@@ -215,7 +216,7 @@ function inicio() {
       document.getElementById('stats').style.display = 'flex';
       document.getElementById('controls').style.display = 'flex';
       document.getElementById('marcomonstruo2').style.display = 'none';
-      healthText.innerText = health;
+      healthText.innerText = `${health}/${maxHealth}`;
 
       // Actualizar el nombre del jugador en el marco de estadísticas
       document.getElementById('playerNameStat').innerText = playerName;
@@ -325,6 +326,7 @@ function update(location) {
    console.error("El elemento 'statsmonstruo' no existe en el DOM.");
   }
   document.getElementById('experiencia').style.width = (xp/xpNeed*100) + '%'; // Actualiza la barra de xp
+  nivel.innerText = lvl;
 }
 
 
@@ -363,8 +365,8 @@ function buyHealth() {
     gold -= 10;
     health += 10;
     goldText.innerText = gold;
-    healthText.innerText = health;
-    document.getElementById('vida').style.width = health + '%';
+    healthText.innerText = `${health}/${maxHealth}`;
+    document.getElementById('vida').style.width = (health/maxHealth*100) + '%'; //actualiza la barra de vida del pj
   } else {
     text.innerText = "No tienes oro para comprar esta pocion o tu vida esta al maximo.";
   }
@@ -491,7 +493,7 @@ function attack() {
   } else {
     text.innerText += " Has fallado.";
   }
-  healthText.innerText = health;
+  healthText.innerText = `${health}/${maxHealth}`;
   monsterHealthText.innerText = monsterHealth;
   if (health <= 0) {
     lose();
@@ -509,7 +511,7 @@ function attack() {
   };
 
 
-  document.getElementById('vida').style.width = health + '%'; //actualiza la barra de vida del pj
+  document.getElementById('vida').style.width = (health/maxHealth*100) + '%'; //actualiza la barra de vida del pj
   document.getElementById('vidaMonster').style.width = (monsterHealth/monsters[fighting].health*100) + '%'; // actualiza la barra de vida del enemigo
 }
 
@@ -533,7 +535,7 @@ const subirlvl = () => {
     xp = 0;
     xpNeed = xpNeed*1.5;
     lvl += 1;
-    maxHealth = maxHealth*1.2;
+    maxHealth = Math.round(maxHealth*1.2);
   }
 }
 
@@ -541,6 +543,7 @@ function defeatMonster() {
   gold += Math.floor(monsters[fighting].level * 6.7);
   xp += monsters[fighting].level;
   subirlvl();
+  healthText.innerText = `${health}/${maxHealth}`;
   goldText.innerText = gold;
   xpText.innerText = xp;
   update(locations[7]);

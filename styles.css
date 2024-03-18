@@ -261,7 +261,9 @@ body img {
       display: flex;
       align-items: center;
     }
-    
+    #statsmarco .namestat {
+      display: flex;
+    }
     #statsmarco .stat .stat-text {
       margin-right: 10px;
     }
@@ -287,7 +289,7 @@ body img {
     color: white; /* Cambia el color del texto a blanco */
     font-size: 14px; /* Cambia el tamaño de la fuente a 14px */
     font-weight: bold; /* Hace que el texto sea negrita */
-    left: 60%;
+    left: 50%;
     }
 
     #barraxp {
@@ -317,6 +319,9 @@ body img {
 
       .stat-text{
         width: 25%;
+      }
+      .nivel-text{
+        font-size: 12px;
       }
 
 
