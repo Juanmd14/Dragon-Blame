@@ -217,6 +217,7 @@ function inicio() {
       document.getElementById('controls').style.display = 'flex';
       document.getElementById('marcomonstruo2').style.display = 'none';
       healthText.innerText = `${health}/${maxHealth}`;
+      xpText.innerText = `${xp}/${xpNeed}`;
 
       // Actualizar el nombre del jugador en el marco de estadísticas
       document.getElementById('playerNameStat').innerText = playerName;
@@ -533,7 +534,7 @@ function dodge() {
 const subirlvl = () => {
   if (xp>=xpNeed) {
     xp = 0;
-    xpNeed = xpNeed*1.5;
+    xpNeed = Math.round(xpNeed*1.4);
     lvl += 1;
     maxHealth = Math.round(maxHealth*1.2);
   }
@@ -545,7 +546,7 @@ function defeatMonster() {
   subirlvl();
   healthText.innerText = `${health}/${maxHealth}`;
   goldText.innerText = gold;
-  xpText.innerText = xp;
+  xpText.innerText = `${xp}/${xpNeed}`;
   update(locations[7]);
 }
 
