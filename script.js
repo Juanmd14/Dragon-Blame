@@ -330,24 +330,6 @@ function update(location) {
   nivel.innerText = lvl;
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-  var audio = document.getElementById('miAudio');
-
-  audio.oncanplay = function() {
-      // Verificar si el audio no se está reproduciendo actualmente
-      if (!audio.paused) {
-          return;
-      }
-      
-      audio.currentTime = 19; 
-      audio.play(); 
-  };
-});
-
-
-
-
-
 function goTown() {
     update(locations[1]); // Vuelve al pueblo inicial por defecto
 }
