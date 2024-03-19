@@ -267,19 +267,6 @@ function detenerEscritura() {
   estaEscribiendo = false;
 }
 
-
-let swordButtonAdded = false;
-
-function hacerVisibleBoton(location) {
-  const button4 = document.getElementById('button4'); // Obtén el botón "Sacar Espada Secreta"
-
-  if (location === 'locations 11') {
-    button4.classList.add('button-location-11'); // Agrega la clase para mostrar el botón
-  } else {
-    button4.classList.remove('button-location-11'); // Quita la clase para ocultar el botón
-  }
-}
-
 function update(location) {
   fondoimg.setAttribute("src", location.img); // Cambia la imagen del fondo en el div fondo
   detenerEscritura();
@@ -524,7 +511,7 @@ function attack() {
   health -= getMonsterAttackValue(monsters[fighting].level);
   if (isMonsterHit()) {
     // Calcula el daño infligido al monstruo
-    let playerDamage = weapons[currentWeapon].power + Math.floor(Math.random() * xp) + 1;
+    let playerDamage = weapons[currentWeapon].power + Math.floor(Math.random() * lvl*2) + 1;
     text.innerText += " ¡Has infligido " + playerDamage + " de daño!";
     console.log(`monsterHealth antes del ataque: ${monsterHealth}`);
     monsterHealth -= playerDamage;
@@ -559,7 +546,7 @@ function attack() {
 
 
 function getMonsterAttackValue(level) {
-  const hit = (level * 5) - (Math.floor(Math.random() * xp));
+  const hit = (level * 5) - (Math.floor(Math.random() * lvl*3));
   console.log(hit);
   return hit > 0 ? hit : 0;
 }
@@ -575,7 +562,7 @@ function dodge() {
 const subirlvl = () => {
   if (xp>=xpNeed) {
     xp = 0;
-    xpNeed = Math.round(xpNeed*1.4);
+    xpNeed = Math.round(xpNeed*1.3);
     lvl += 1;
     maxHealth = Math.round(maxHealth*1.2);
   }
