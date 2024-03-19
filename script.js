@@ -32,7 +32,8 @@ const weapons = [
   { name: 'palo', power: 5 },
   { name: 'Daga', power: 30 },
   { name: 'Martillo Pesado', power: 50 },
-  { name: 'Espada', power: 100 }
+  { name: 'Espada', power: 100 },
+  { name: 'Espada dragon', power: 150 }
 ];
 const monsters = [
   {
@@ -362,9 +363,9 @@ function goMountain() {
 function goThree() {
   update(locations[11]); // Actualiza a la ubicación correspondiente a la posición 11
 
-  const swordImage = document.createElement('img');
-  swordImage.src = locations[11].swordImg; // Obtiene la ruta de la imagen de la espada desde el objeto locations 11
-  swordImage.classList.add('sword-image'); // Agrega una clase para aplicar estilos si es necesario
+  // const swordImage = document.createElement('img'); ver como agregar la imagen
+  // swordImage.src = locations[11].swordImg; // Obtiene la ruta de la imagen de la espada desde el objeto locations 11
+  // swordImage.classList.add('sword-image'); // Agrega una clase para aplicar estilos si es necesario
 
 }
 
@@ -413,7 +414,7 @@ function espadaSecreta() {
 }
 
 function buyWeapon() {
-  if (currentWeapon < weapons.length - 1) {
+  if (currentWeapon < weapons.length - 2) {
     if (gold >= 30) {
       gold -= 30;
       currentWeapon++;
