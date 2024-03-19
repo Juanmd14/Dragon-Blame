@@ -401,10 +401,10 @@ function buyHealth() {
 
 function espadaSecreta() {
   // Verificar si hay un elemento en la posición 11 del array locations y si el nivel es mayor que 5
-  if (locations[11] !== undefined && nivel > 5) {
+  if (currentWeapon < weapons.length - 1 && lvl > 5) {
     // Sacar la espada secreta
     text.innerText = "Has conseguido la espada matadragones es hora de ir a por el Dragon!!"
-    weapons.push(espadaSecreta);
+    currentWeapon++;
     console.log("Ahora tienes :", weapons);
 
   } else {
