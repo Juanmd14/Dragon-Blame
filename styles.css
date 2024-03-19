@@ -465,8 +465,13 @@ body img {
   }
 
 
-  .sword-image {
-    width: 100px; /* Ajusta el tamaño según sea necesario */
+  #sword-Image {
+    display: none;
+    width: 50px; /* Ajusta el tamaño según sea necesario */
     height: auto;
+    position: absolute;
+    top: 38%;
+    left: 68%;
+    transform: rotate(45deg);
   }
   

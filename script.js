@@ -33,7 +33,7 @@ const weapons = [
   { name: 'Daga', power: 30 },
   { name: 'Martillo Pesado', power: 50 },
   { name: 'Espada', power: 100 },
-  { name: 'Espada dragon', power: 150 }
+  { name: 'Matadragones', power: 150 }
 ];
 const monsters = [
   {
@@ -159,11 +159,10 @@ const locations = [
     name: "Escondido del slime",
     "button text": ["Volver", "Espada misteriosa"],
     "button functions": [goTown, espadaSecreta],
-    "button position top": ["50%", "50%"],
-    "button position left": ["78%", "50%"],
+    "button position top": ["50%", "49%"],
+    "button position left": ["78%", "55%"],
     text: "rodeando el arbol el slime ya no me ataca",
-    img: "img/escondido.jpg",
-    // swordImg: "img/sword.png" ver esto
+    img: "img/escondido.jpg"
   },
   {
     name: "Pueblo B",
@@ -362,11 +361,13 @@ function goMountain() {
 //NO SE COOMO SACAR EL BOTON AIUDA
 function goThree() {
   update(locations[11]); // Actualiza a la ubicación correspondiente a la posición 11
-
-  // const swordImage = document.createElement('img'); ver como agregar la imagen
-  // swordImage.src = locations[11].swordImg; // Obtiene la ruta de la imagen de la espada desde el objeto locations 11
-  // swordImage.classList.add('sword-image'); // Agrega una clase para aplicar estilos si es necesario
-
+  if (currentWeapon < weapons.length - 1) { 
+  document.getElementById('sword-Image').style.display = 'flex'}
+  else {
+    document.getElementById('sword-Image').style.display = 'none';
+    button2.style.display = 'none';
+  };
+  button1.addEventListener('click', () => {document.getElementById('sword-Image').style.display = 'none';});
 }
 
 
