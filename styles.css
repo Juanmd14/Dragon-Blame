@@ -451,7 +451,6 @@ body img {
   }
   [id*="item"]{
     border-radius: 10px;
-    padding-left: 50px;
   }
   #inventariocontenedor .stat{
     display: flex;
@@ -494,31 +493,19 @@ body img {
   }
 
   #daga-image {
-    display: flex;
     width: 150px; /* Ajusta el tamaño según sea necesario */
     height: auto;
     position: relative;
-    /* top: 10%;
-    left: 10%; */
     transform: rotate(45deg);
   }
   #martillo-image {
-    display: flex;
-    width: 250px; /* Ajusta el tamaño según sea necesario */
     height: auto;
     position: relative;
-    /* top: 10%;
-    left: 10%; */
     transform: rotate(45deg);
   }
   #pocionchica-image {
-    display: flex;
-    width: 80px; /* Ajusta el tamaño según sea necesario */
     height: auto;
     position: relative;
-    /* top: 10%; */
-    /* left: 10%; */
-    transform: rotate(90deg);
   }
   #vendedor{
     display: none;
