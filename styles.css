@@ -450,8 +450,8 @@ body img {
     padding: 5px;
   }
   [id*="item"]{
-    background-color: aqua;
     border-radius: 10px;
+    padding-left: 50px;
   }
   #inventariocontenedor .stat{
     display: flex;
@@ -462,22 +462,26 @@ body img {
   
   #tiendacontenedor{
     display: none;
-    width: 400px;
-    height: 500px;
-    background-color: brown;
+    width: 500px;
+    height: 340px;
+    background-color: saddlebrown;
     position: absolute;
     top: 10%;
     right: 10%;
     border-radius: 10px;
-    transform: rotate(270deg);
   }
   #tienda{
-    width: 90%;
-    height: 90%;
+    display: flex;
+    width: 95%;
+    height: 95%;
     background-color: orange;
     margin: auto;
   }
-
+  #mesa{
+    position: absolute;
+    width: inherit;
+    height: inherit;
+  }
 
   #sword-Image {
     display: none;
@@ -490,38 +494,44 @@ body img {
   }
 
   #daga-image {
-    display: none;
+    display: flex;
     width: 150px; /* Ajusta el tamaño según sea necesario */
     height: auto;
-    position: absolute;
-    top: 10%;
-    left: 10%;
+    position: relative;
+    /* top: 10%;
+    left: 10%; */
     transform: rotate(45deg);
   }
   #martillo-image {
-    display: none;
+    display: flex;
     width: 250px; /* Ajusta el tamaño según sea necesario */
     height: auto;
-    position: absolute;
-    top: 10%;
-    left: 10%;
+    position: relative;
+    /* top: 10%;
+    left: 10%; */
     transform: rotate(45deg);
   }
   #pocionchica-image {
-    display: none;
+    display: flex;
     width: 80px; /* Ajusta el tamaño según sea necesario */
     height: auto;
-    position: absolute;
-    top: 10%;
-    left: 10%;
+    position: relative;
+    /* top: 10%; */
+    /* left: 10%; */
     transform: rotate(90deg);
   }
   #vendedor{
-    display: flex;
+    display: none;
     width: 400px;
     height: auto;
     position: absolute;
     top: 15%;
     left: 10%;
     z-index: 1;
+  }
+  #precio{
+    background-color: #b58f04;
+    width: 50px;
+    height: 50px;
+    position: absolute;
   }
