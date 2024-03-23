@@ -34,11 +34,6 @@ const weapons = [
   { name: 'Martillo Pesado', power: 50, id: 3, precio: 50 },
   { name: 'Espada', power: 100, id: 4, precio: 100 },
   { name: 'Matadragones', power: 150, id: 5, precio: 200 }
-  { name: 'palo', power: 5, id: 1, precio: 10, img: "img/palo.png"},
-  { name: 'Daga', power: 30, id: 2, precio: 30, img: "img/daga.png" },
-  { name: 'Martillo Pesado', power: 50, id: 3, precio: 50, img: "img/martillo.png" },
-  { name: 'Espada', power: 100, id: 4, precio: 100, img: "img/espada.png" },
-  { name: 'Matadragones', power: 150, id: 5, precio: 200, img: "img/sword.png" }
 ];
 const monsters = [
   {
@@ -311,6 +306,8 @@ function update(location) {
 
   text.innerText = location.text;
   escribirTexto(location.text);
+
+  
   
 
   button1.style.top = location["button position top"][0];
@@ -421,6 +418,7 @@ if (item) {
       text.innerText = "Ahora tienes una " + newWeapon + ".";
       inventory.push(newWeapon);
       text.innerText += " En tu inventario tienes: " + inventory;
+      actualizarinventario();
   } else {
     text.innerText = "No tienes oro para comprar un arma.";
   }
@@ -625,11 +623,12 @@ personaje.addEventListener("click", ()=>{
   visible = !visible;
 });
 
+function actualizarinventario() {
   const inventario = document.getElementById('inventario');
-function actualizarinventario(){
-// const iteminventario = document.getElementById('inventario');
-  iteminventario = document.createElement('div');
-  iteminventario.id = `iitem${inventory.length+1}`;
+  const ultimoItemIndex = inventory.length - 1; // Índice del último elemento agregado al inventario
+
+  // Obtener el último ítem agregado al inventario
+  const ultimoItem = inventory[ultimoItemIndex];
 
   // Crear un nuevo elemento div para el ítem
   const nuevoItem = document.createElement('div');
@@ -663,3 +662,4 @@ function actualizarinventario(){
 
   inventario.appendChild(nuevoItem);//boluu
 }
+
