@@ -29,11 +29,11 @@ const inventario = document.getElementById('inventariocontenedor');
 const nivel = document.getElementById('nivel');
 
 const weapons = [
-  { name: 'palo', power: 5 },
-  { name: 'Daga', power: 30 },
-  { name: 'Martillo Pesado', power: 50 },
-  { name: 'Espada', power: 100 },
-  { name: 'Matadragones', power: 150 }
+  { name: 'palo', power: 5, id: 1, precio: 10},
+  { name: 'Daga', power: 30, id: 2, precio: 30 },
+  { name: 'Martillo Pesado', power: 50, id: 3, precio: 50 },
+  { name: 'Espada', power: 100, id: 4, precio: 100 },
+  { name: 'Matadragones', power: 150, id: 5, precio: 200 }
 ];
 const monsters = [
   {
@@ -74,10 +74,10 @@ const locations = [
   },
   {
     name: "Store",
-    "button text": ["Poción", "Armas", "Salir"],
-    "button functions": [buyHealth, buyWeapon, goTown],
-    "button position top": ["51%","17%","91%"],
-    "button position left": ["24%","77%","76%"],
+    "button text": ["Salir"],
+    "button functions": [goTown],
+    "button position top": ["91%"],
+    "button position left": ["76%"],
     text: "Entras a una tienda por suministros, te ofrece pociones a 10 de oro y armas a 30 de oro.",
     img: "img/Tienda.jpg"
   },
@@ -278,7 +278,7 @@ function update(location) {
   
 
   // Verifica si estamos en "Escondido del slime"
-  if (location.name === "lose"  || location.name === "kill monster" || location.name === "win") {  // aca agregas locations si queres que se muestre 1 solo boton
+  if (location.name === "lose"  || location.name === "kill monster" || location.name === "win" || location.name === "Store") {  // aca agregas locations si queres que se muestre 1 solo boton
     // Muestra solo el botón de "Huir"
     button1.innerText = location["button text"][0]; // Cambiado de 2 a 0 ya que solo hay un boton
     button1.onclick = location["button functions"][0]; // Cambiado de 2 a 0 ya que solo hay una funcion
@@ -388,6 +388,7 @@ function buyHealth() {
     text.innerText = "No tienes oro para comprar esta pocion o tu vida esta al maximo.";
   }
 }
+document.getElementById('preciopocionc').addEventListener("click",buyHealth);
 
 function espadaSecreta() {
   // Verificar si hay un elemento en la posición 11 del array locations y si el nivel es mayor que 5
@@ -404,25 +405,48 @@ function espadaSecreta() {
   }
 }
 
-function buyWeapon() {
-  if (currentWeapon < weapons.length - 2) {
-    if (gold >= 30) {
-      gold -= 30;
-      currentWeapon++;
-      goldText.innerText = gold;
+function buyWeapon (id) {
+const item = weapons.find(item => item.id === id);
+if (item) {
+  if (gold >= weapons[id].precio){
+    gold -= weapons[id].precio;
+    currentWeapon = item.id;
+    goldText.innerText = gold;
       let newWeapon = weapons[currentWeapon].name;
       text.innerText = "Ahora tienes una " + newWeapon + ".";
       inventory.push(newWeapon);
       text.innerText += " En tu inventario tienes: " + inventory;
-    } else {
-      text.innerText = "No tienes oro para comprar un arma.";
-    }
   } else {
-    text.innerText = "Ya tienes el mejor equipamiento";
-    button2.innerText = "Vender arma 15 de oro";
-    button2.onclick = sellWeapon;
+    text.innerText = "No tienes oro para comprar un arma.";
   }
-}
+
+// } else {
+//   text.innerText = "Ya tienes el mejor equipamiento";
+//   button2.innerText = "Vender arma 15 de oro";
+//   button2.onclick = sellWeapon;
+// }
+}}
+// function buyWeapon() {
+//   if (currentWeapon < weapons.length - 2) {
+//     if (gold >= 30) {
+//       gold -= 30;
+//       currentWeapon++;
+//       goldText.innerText = gold;
+//       let newWeapon = weapons[currentWeapon].name;
+//       text.innerText = "Ahora tienes una " + newWeapon + ".";
+//       inventory.push(newWeapon);
+//       text.innerText += " En tu inventario tienes: " + inventory;
+//     } else {
+//       text.innerText = "No tienes oro para comprar un arma.";
+//     }
+//   } else {
+//     text.innerText = "Ya tienes el mejor equipamiento";
+//     button2.innerText = "Vender arma 15 de oro";
+//     button2.onclick = sellWeapon;
+//   }
+// }
+document.getElementById('preciodaga').addEventListener("click", buyWeapon);
+document.getElementById('preciomartillo').addEventListener("click", buyWeapon);
 
 function sellWeapon() {
   if (inventory.length > 1) {

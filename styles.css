@@ -120,10 +120,6 @@ body img {
   #button3{
     position: relative;
   }
-  
-  #controls #button4 {
-    display: none !important; /* Anula la propiedad display flex para el botón dentro de #controls */
-  }
 
   #fondo{
     display: none;
@@ -524,4 +520,9 @@ body img {
     height: 25px;
     position: relative;
     border-radius: 10px;
+    z-index: 2;
+  }
+  button:hover {
+    transform: scale(1.1);
+    cursor: pointer;
   }
