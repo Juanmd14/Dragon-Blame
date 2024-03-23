@@ -339,6 +339,7 @@ function goTown() {
 
 function goStore() {
   update(locations[2]);
+  document.getElementById('tiendacontenedor').style.display = 'flex'; 
 }
 
 function goMountain() {

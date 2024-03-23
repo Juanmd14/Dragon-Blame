@@ -476,7 +476,6 @@ body img {
     justify-content: space-around;
     width: 95%;
     height: 95%;
-    background-color: orange;
     margin: auto;
   }
   #mesa{
@@ -504,9 +503,9 @@ body img {
   #martillo-image {
     height: auto;
     position: relative;
-    transform: rotate(45deg);
   }
   #pocionchica-image {
+    width: 80px;
     height: auto;
     position: relative;
   }
@@ -523,6 +522,6 @@ body img {
     background-color: #b58f04;
     width: 50px;
     height: 25px;
-    position: absolute;
+    position: relative;
     border-radius: 10px;
   }
