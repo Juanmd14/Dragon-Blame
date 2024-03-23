@@ -399,7 +399,7 @@ function espadaSecreta() {
     currentWeapon++;
     inventory.push(weapons[currentWeapon].name);
     console.log("Ahora tienes :", weapons);
-
+    actualizarinventario();
   } else {
     console.log("No puedes sacar la espada secreta con tu nivel.");
     text.innerText = "Aun no puedes sacar la espada"
@@ -412,7 +412,6 @@ if (item) {
   if (gold >= weapons[id].precio){
     gold -= weapons[id].precio;
     currentWeapon = item.id;
-    actualizarinventario();
     goldText.innerText = gold;
       let newWeapon = weapons[currentWeapon].name;
       text.innerText = "Ahora tienes una " + newWeapon + ".";
@@ -650,6 +649,10 @@ function actualizarinventario() {
     case 'Espada':
       nuevoItemImage.src = 'img/espada.png';
       nuevoItemImage.alt = 'Espada';
+      break;
+      case 'Matadragones':
+      nuevoItemImage.src = 'img/sword.png';
+      nuevoItemImage.alt = 'Matadragones';
       break;
     default:
       // Si el último ítem no coincide con ninguno de los casos anteriores, se establece una imagen predeterminada
