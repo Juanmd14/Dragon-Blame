@@ -347,7 +347,6 @@ function goMountain() {
   update(locations[10]);
 }
 
-//NO SE COOMO SACAR EL BOTON AIUDA
 function goThree() {
   update(locations[11]); // Actualiza a la ubicación correspondiente a la posición 11
   if (currentWeapon < weapons.length - 1) { 
@@ -411,6 +410,7 @@ if (item) {
   if (gold >= weapons[id].precio){
     gold -= weapons[id].precio;
     currentWeapon = item.id;
+    actualizarinventario();
     goldText.innerText = gold;
       let newWeapon = weapons[currentWeapon].name;
       text.innerText = "Ahora tienes una " + newWeapon + ".";
@@ -426,37 +426,21 @@ if (item) {
 //   button2.onclick = sellWeapon;
 // }
 }}
-// function buyWeapon() {
-//   if (currentWeapon < weapons.length - 2) {
-//     if (gold >= 30) {
-//       gold -= 30;
-//       currentWeapon++;
-//       goldText.innerText = gold;
-//       let newWeapon = weapons[currentWeapon].name;
-//       text.innerText = "Ahora tienes una " + newWeapon + ".";
-//       inventory.push(newWeapon);
-//       text.innerText += " En tu inventario tienes: " + inventory;
-//     } else {
-//       text.innerText = "No tienes oro para comprar un arma.";
-//     }
-//   } else {
-//     text.innerText = "Ya tienes el mejor equipamiento";
-//     button2.innerText = "Vender arma 15 de oro";
-//     button2.onclick = sellWeapon;
-//   }
-// }
+
 document.getElementById('preciodaga').addEventListener("click", function() {
   buyWeapon(1); 
 });
-
 document.getElementById('preciomartillo').addEventListener("click", function() {
   buyWeapon(2);
 });
+// document.getElementById('precioespada').addEventListener("click", function() {
+//   buyWeapon(3);
+// });
 
 
 function sellWeapon() {
   if (inventory.length > 1) {
-    gold += 15;
+    gold += weapons[id].precio/3;
     goldText.innerText = gold;
     let currentWeapon = inventory.shift();
     text.innerText = "Has vendido tu " + currentWeapon + ".";
@@ -635,3 +619,8 @@ personaje.addEventListener("click", ()=>{
   }
   visible = !visible;
 });
+
+function actualizarinventario(){
+const iteminventario = document.getElementById('inventario').createElement('div');
+ iteminventario.id = `iitem${inventory.length}`;
+}

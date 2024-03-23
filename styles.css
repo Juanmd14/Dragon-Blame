@@ -526,3 +526,9 @@ body img {
     transform: scale(1.1);
     cursor: pointer;
   }
+  [id*="iitem"]{
+    border: 1px solid black;
+    border-radius: 10px;
+    text-align: center;
+    margin: auto;
+  }
