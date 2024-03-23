@@ -306,6 +306,8 @@ function update(location) {
 
   text.innerText = location.text;
   escribirTexto(location.text);
+
+  
   
 
   button1.style.top = location["button position top"][0];
@@ -416,6 +418,7 @@ if (item) {
       text.innerText = "Ahora tienes una " + newWeapon + ".";
       inventory.push(newWeapon);
       text.innerText += " En tu inventario tienes: " + inventory;
+      actualizarinventario();
   } else {
     text.innerText = "No tienes oro para comprar un arma.";
   }
@@ -620,7 +623,42 @@ personaje.addEventListener("click", ()=>{
   visible = !visible;
 });
 
-function actualizarinventario(){
-const iteminventario = document.getElementById('inventario').createElement('div');
- iteminventario.id = `iitem${inventory.length}`;
+function actualizarinventario() {
+  const inventario = document.getElementById('inventario');
+  const ultimoItemIndex = inventory.length - 1; // Índice del último elemento agregado al inventario
+
+  // Obtener el último ítem agregado al inventario
+  const ultimoItem = inventory[ultimoItemIndex];
+
+  // Crear un nuevo elemento div para el ítem
+  const nuevoItem = document.createElement('div');
+  nuevoItem.id = `iitem${ultimoItemIndex}`; // Asignar un ID único al nuevo ítem
+
+  // Crear una imagen para representar el ítem
+  const nuevoItemImage = document.createElement('img');
+
+  // Seleccionar el tipo de ítem basado en el último ítem agregado al inventario
+  switch (ultimoItem) {
+    case 'Daga':
+      nuevoItemImage.src = 'img/daga.png';
+      nuevoItemImage.alt = 'Daga';
+      break;
+    case 'Martillo Pesado':
+      nuevoItemImage.src = 'img/martillo.png';
+      nuevoItemImage.alt = 'Martillo';
+      break;
+    case 'Espada':
+      nuevoItemImage.src = 'img/espada.png';
+      nuevoItemImage.alt = 'Espada';
+      break;
+    default:
+      // Si el último ítem no coincide con ninguno de los casos anteriores, se establece una imagen predeterminada
+      nuevoItemImage.src = 'img/default.png';
+      nuevoItemImage.alt = 'Default';
+      break;
+  }
+
+  nuevoItem.appendChild(nuevoItemImage);
+
+  inventario.appendChild(nuevoItem);
 }
