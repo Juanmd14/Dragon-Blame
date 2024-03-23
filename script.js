@@ -663,6 +663,5 @@ function actualizarinventario() {
 
   nuevoItem.appendChild(nuevoItemImage);
 
-  inventario.appendChild(nuevoItem);//boluu
+  inventario.appendChild(nuevoItem);// agrega
 }
-
