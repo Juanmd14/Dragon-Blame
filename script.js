@@ -135,7 +135,7 @@ const locations = [
     "button position left": ["48%"],
     "button functions": [restart],
     text: "Has muerto.",
-    img: "img/Muerte.jpg"
+    img: "img/muerte.jpg"
   },
   { 
     name: "win", 
