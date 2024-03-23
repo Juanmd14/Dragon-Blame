@@ -445,8 +445,14 @@ if (item) {
 //     button2.onclick = sellWeapon;
 //   }
 // }
-document.getElementById('preciodaga').addEventListener("click", buyWeapon);
-document.getElementById('preciomartillo').addEventListener("click", buyWeapon);
+document.getElementById('preciodaga').addEventListener("click", function() {
+  buyWeapon(1); 
+});
+
+document.getElementById('preciomartillo').addEventListener("click", function() {
+  buyWeapon(2);
+});
+
 
 function sellWeapon() {
   if (inventory.length > 1) {
