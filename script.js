@@ -335,6 +335,7 @@ function update(location) {
 
 function goTown() {
     update(locations[1]); // Vuelve al pueblo inicial por defecto
+  document.getElementById('tiendacontenedor').style.display = 'none'; 
 }
 
 function goStore() {

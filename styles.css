@@ -518,7 +518,7 @@ body img {
     left: 10%;
     z-index: 1;
   }
-  #precio{
+  [id*="precio"]{
     background-color: #b58f04;
     width: 50px;
     height: 25px;
