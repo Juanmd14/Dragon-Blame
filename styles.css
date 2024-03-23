@@ -470,14 +470,15 @@ body img {
   #tienda{
     display: flex;
     justify-content: space-around;
-    width: 95%;
-    height: 95%;
+    width: 98%;
+    height: 98%;
     margin: auto;
   }
   #mesa{
     position: absolute;
     width: inherit;
     height: inherit;
+    border-radius: 10px;
   }
 
   #sword-Image {
