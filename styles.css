@@ -10,6 +10,22 @@ body img {
   height: 100%;
 }
 
+#loadingScreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-family: Arial, sans-serif;
+  z-index: 1000;
+}
+
   #startScreen {
     display: flex;
     flex-direction: column;
@@ -73,8 +89,8 @@ body img {
     text-shadow: -1px -1px 0 #000,  
     1px -1px 0 #000,
     -1px 1px 0 #000,
-    1px 1px 0 #000;;
-   
+    1px 1px 0 #000;
+    max-width: 100%; /* Asegura que no se salga del contenedor */
   }
   
   .welcome-message.hide {
@@ -132,19 +148,6 @@ body img {
     object-fit: fill;
   }
 
-/*  no entendi para que sirve pero debe ser un boton extra
-  #goToForest{
-    display: flex;
-    position: absolute;
-    width: 100px;
-    height: 50px;
-    top: 400px;
-    right: 220px;
-    align-items: center;
-    background: linear-gradient(to bottom, #f8c313 50%, #b58f04 100%);
-  }
-
-  */
   #textcontainer {
     display: none;
     width: 60%;
@@ -171,7 +174,7 @@ body img {
   #textp {
     font-size: 1.5vw;
     position: absolute;
-    z-index: 3;
+    z-index: 2;
     width: 100%;
     height: 100%;
     text-align: center;
@@ -481,15 +484,30 @@ body img {
     border-radius: 10px;
   }
 
-  #sword-Image {
+  #tiendacontenedor2{
     display: none;
-    width: 50px; /* Ajusta el tamaño según sea necesario */
-    height: auto;
+    width: 500px;
+    height: 340px;
+    background-color: saddlebrown;
     position: absolute;
-    top: 38%;
-    left: 68%;
-    transform: rotate(45deg);
+    top: 10%;
+    right: 10%;
+    border-radius: 10px;
   }
+  #tienda2{
+    display: flex;
+    justify-content: space-around;
+    width: 98%;
+    height: 98%;
+    margin: auto;
+  }
+  #mesa2{
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    border-radius: 10px;
+  }
+
 
   #daga-image {
     width: 150px; /* Ajusta el tamaño según sea necesario */
@@ -497,11 +515,25 @@ body img {
     position: relative;
     transform: rotate(45deg);
   }
+
   #martillo-image {
     height: auto;
     position: relative;
   }
+  #espada-image {
+    width: 100px; /* Ajusta el tamaño según sea necesario */
+    height: auto;
+    position: relative;
+    transform: rotate(45deg);
+    left: 40px;
+  }
   #pocionchica-image {
+    width: 80px;
+    height: auto;
+    position: relative;
+  }
+  #pociongrande-image2 {
+    bottom: 20px;
     width: 80px;
     height: auto;
     position: relative;
@@ -523,6 +555,19 @@ body img {
     border-radius: 10px;
     z-index: 2;
   }
+
+  #tiendacontenedor2 [id*="precio"] {
+    background-color: #b58f04; /* Mismo color o uno diferente */
+    width: 50px;
+    height: 25px;
+    position: relative;
+    border-radius: 10px;
+    z-index: 2;
+    right: 65px;
+    top: 10px
+}
+
+
   button:hover {
     transform: scale(1.1);
     cursor: pointer;
