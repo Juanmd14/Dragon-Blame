@@ -546,7 +546,7 @@ function attack () {
       defeatMonster()
     }
   }
-  if (Math.random() <= 0.9 && inventory.length > 1) {
+  if (Math.random() <= 0.1 && inventory.length > 1) {
     text.innerText += ' Tu ' + inventory.pop() + ' se ha roto.'
     currentWeapon = (currentWeapon >= inventory.length) ? inventory.length - 1 : currentWeapon
     actualizarinventario()
