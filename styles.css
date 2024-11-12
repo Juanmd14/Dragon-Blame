@@ -10,22 +10,6 @@ body img {
   height: 100%;
 }
 
-#loadingScreen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: black;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-  font-family: Arial, sans-serif;
-  z-index: 1000;
-}
-
   #startScreen {
     display: flex;
     flex-direction: column;
@@ -117,10 +101,13 @@ body img {
   }
   #controls button {
     display: flex;
+    color: #333;
     width: 80px;
     height: 40px;
+    border-radius: 6px;
     background: linear-gradient(to bottom, #f8c313 50%, #b58f04 100%);
-    
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), inset 0 -3px 6px rgba(255, 255, 255, 0.2);
+    border: 2px solid #764201;
   }
   
   #controls button:hover {
@@ -549,6 +536,13 @@ body img {
   }
   [id*="precio"]{
     background-color: #b58f04;
+    color: #333;
+    width: 80px;
+    height: 40px;
+    border-radius: 6px;
+    background: linear-gradient(to bottom, #f8c313 50%, #b58f04 100%);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), inset 0 -3px 6px rgba(255, 255, 255, 0.2);
+    border: 2px solid #764201;
     width: 50px;
     height: 25px;
     position: relative;
@@ -567,6 +561,18 @@ body img {
     top: 10px
 }
 
+
+#sword-image {
+
+  display: none; /* Cambia a 'block' para ver si se muestra */
+  width: 3%; /* Ajusta el ancho como porcentaje */
+  height: auto;
+  position: absolute;
+  top: 38%; /* Ajusta la posición en porcentaje */
+  transform: rotate(45deg);
+  left: 73%; /* Ajusta la posición en porcentaje */
+  z-index: 3; /* Asegúrate de que esté encima de otros elementos */
+}
 
   button:hover {
     transform: scale(1.1);

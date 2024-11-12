@@ -74,7 +74,7 @@ const locations = [
     'button text': ['Salir'],
     'button functions': [goTown],
     'button position top': ['91%'],
-    'button position left': ['76%'],
+    'button position left': ['84%'],
     text: '',
     img: 'img/Tienda.jpg'
   },
@@ -156,8 +156,8 @@ const locations = [
     name: 'Escondido del slime',
     'button text': ['Volver', 'Espada misteriosa'],
     'button functions': [goTown, espadaSecreta],
-    'button position top': ['50%', '49%'],
-    'button position left': ['78%', '55%'],
+    'button position top': ['50%', '45%'],
+    'button position left': ['78%', '64%'],
     text: 'rodeando el arbol el slime ya no me ataca',
     img: 'img/escondido.jpg'
   },
@@ -341,12 +341,12 @@ function goMountain () {
 function goThree () {
   update(locations[11]) // Actualiza a la ubicación correspondiente a la posición 11
   if (currentWeapon < weapons.length - 1) {
-    document.getElementById('sword-Image').style.display = 'flex'
+    document.getElementById('sword-image').style.display = 'flex'
   } else {
-    document.getElementById('sword-Image').style.display = 'none'
+    document.getElementById('sword-image').style.display = 'none'
     button2.style.display = 'none'
   };
-  button1.addEventListener('click', () => { document.getElementById('sword-Image').style.display = 'none' })
+  button1.addEventListener('click', () => { document.getElementById('sword-image').style.display = 'none' })
 }
 
 function goCave () {
